@@ -138,45 +138,12 @@
       padding: 26px 20px 26px;
       box-shadow: 0 24px 60px rgba(15, 23, 42, 0.85);
       display: flex;
-      flex-direction: column;
+      flex-direction: column; /* 사진 제거 후에도 컬럼 레이아웃 유지 */
       gap: 20px;
     }
 
     .hero-text {
       flex: 1 1 0;
-    }
-
-    /* 🔥 A버전 – 오른쪽 손바닥 쪽 진하고, 텍스트 쪽으로 갈수록 부드럽게 */
-    .hero-visual {
-      flex: 0 0 260px;
-      border: none;
-      box-shadow: none;
-      border-radius: 24px;
-      background:
-        linear-gradient(
-          to left,
-          rgba(0, 0, 0, 0.72) 0%,
-          rgba(0, 0, 0, 0.06) 55%
-        ),
-        url("hero-sky-breath.jpg.png.png") center/cover no-repeat;
-      position: relative;
-      overflow: hidden;
-      min-height: 160px;
-    }
-
-    .hero-visual::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(15, 23, 42, 0.35), transparent 60%);
-      opacity: 0.18;
-      animation: heroBreath 9s ease-in-out infinite;
-    }
-
-    @keyframes heroBreath {
-      0%   { opacity: 0.15; transform: scale(1); }
-      50%  { opacity: 0.32; transform: scale(1.03); }
-      100% { opacity: 0.18; transform: scale(1); }
     }
 
     .hero-kicker {
@@ -265,13 +232,15 @@
       margin-top: 4px;
     }
 
-    @media (min-width: 900px) {
+    @media (min-width: 768px) {
       .hero-inner {
-        flex-direction: row;
-        align-items: stretch;
+        padding: 30px 26px 28px;
       }
-      .hero-visual {
-        min-height: 210px;
+      .hero-title-main {
+        font-size: 26px;
+      }
+      .hero-title-sub {
+        font-size: 20px;
       }
     }
 
@@ -363,21 +332,6 @@
       font-size: 11px;
       color: #d1d5db;
       margin-top: 6px;
-    }
-
-    .case-thumb {
-      margin-top: 8px;
-      border-radius: 12px;
-      border: 1px solid rgba(15, 23, 42, 0.9);
-      background: linear-gradient(135deg, #1f2937, #020617);
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      color: #9ca3af;
-      text-align: center;
-      padding: 0 8px;
     }
 
     /* 설명 섹션 */
@@ -514,15 +468,6 @@
     }
 
     @media (min-width: 768px) {
-      .hero-inner {
-        padding: 30px 26px 28px;
-      }
-      .hero-title-main {
-        font-size: 26px;
-      }
-      .hero-title-sub {
-        font-size: 20px;
-      }
       .case-card {
         flex-basis: 240px;
       }
@@ -551,7 +496,7 @@
     <section class="hero">
       <div class="container">
         <div class="hero-inner">
-          <!-- 왼쪽 텍스트 영역 -->
+          <!-- 텍스트만 사용하는 히어로 -->
           <div class="hero-text">
             <div class="hero-kicker">DIGITAL MARKETING PORTFOLIO</div>
             <h1 class="hero-title-main">
@@ -587,9 +532,6 @@
               현재 업종·상권 상황을 공유해 주시면 그에 맞춰 디지털 마케팅 방향을 함께 정리합니다.
             </p>
           </div>
-
-          <!-- 오른쪽 숨쉬는 하늘/산/바다 이미지 영역 -->
-          <div class="hero-visual" aria-hidden="true"></div>
         </div>
 
         <!-- 사례 슬라이더 -->
@@ -788,7 +730,6 @@
           <div class="case-location">${item.location}</div>
           <div class="case-title">${item.title}</div>
           <div class="case-meta">${item.meta}</div>
-          <div class="case-thumb">${item.thumb}</div>
         `;
         track.appendChild(article);
       });
