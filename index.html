@@ -29,11 +29,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="https://hviral.co.kr/favicon-32x32.png" />
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
       width: 100%;
@@ -50,14 +46,8 @@
       min-height: 100vh;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    ul {
-      list-style: none;
-    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
 
     .container {
       max-width: 1080px;
@@ -141,7 +131,6 @@
       padding: 52px 0 32px;
     }
 
-    /* 히어로 전체 카드 + 좌/우 레이아웃 */
     .hero-inner {
       border-radius: 28px;
       border: 1px solid rgba(148, 163, 184, 0.5);
@@ -153,26 +142,28 @@
       gap: 20px;
     }
 
-    /* 왼쪽 텍스트 영역 */
     .hero-text {
       flex: 1 1 0;
     }
 
-    /* 오른쪽 숨쉬는 하늘/산/바다 비주얼(칸 느낌 제거) */
+    /* 🔥 A버전 – 오른쪽 손바닥 쪽 진하고, 텍스트 쪽으로 갈수록 부드럽게 */
     .hero-visual {
-  flex: 0 0 260px;
-  border: none;
-  box-shadow: none;
-  border-radius: 24px;
-  background:
-    url("hero-sky-breath.jpg.png.png") center/cover no-repeat,
-    radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), transparent 55%);
-  position: relative;
-  overflow: hidden;
-  min-height: 160px;
-}
+      flex: 0 0 260px;
+      border: none;
+      box-shadow: none;
+      border-radius: 24px;
+      background:
+        linear-gradient(
+          to left,
+          rgba(0, 0, 0, 0.72) 0%,
+          rgba(0, 0, 0, 0.06) 55%
+        ),
+        url("hero-sky-breath.jpg") center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+      min-height: 160px;
+    }
 
-    /* 숨쉬는 느낌 오버레이 */
     .hero-visual::before {
       content: "";
       position: absolute;
@@ -182,20 +173,10 @@
       animation: heroBreath 9s ease-in-out infinite;
     }
 
-    /* 살짝 확대/밝기 변하는 숨쉬기 애니메이션 */
     @keyframes heroBreath {
-      0% {
-        opacity: 0.15;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 0.32;
-        transform: scale(1.03);
-      }
-      100% {
-        opacity: 0.18;
-        transform: scale(1);
-      }
+      0%   { opacity: 0.15; transform: scale(1); }
+      50%  { opacity: 0.32; transform: scale(1.03); }
+      100% { opacity: 0.18; transform: scale(1); }
     }
 
     .hero-kicker {
@@ -284,13 +265,11 @@
       margin-top: 4px;
     }
 
-    /* PC 화면에서는 좌우 2열, 모바일에서는 위/아래 */
     @media (min-width: 900px) {
       .hero-inner {
         flex-direction: row;
         align-items: stretch;
       }
-
       .hero-visual {
         min-height: 210px;
       }
@@ -348,12 +327,8 @@
     }
 
     @keyframes slideCases {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     .case-card {
@@ -798,13 +773,11 @@
       const track = document.querySelector(".case-track");
       if (!track) return;
 
-      // 랜덤 섞기 (A 선택)
       const shuffled = cases
         .map((c) => ({ ...c, sort: Math.random() }))
         .sort((a, b) => a.sort - b.sort)
         .map(({ sort, ...rest }) => rest);
 
-      // 무한 루프용으로 2세트 생성
       const allCases = shuffled.concat(shuffled);
 
       allCases.forEach((item) => {
@@ -814,12 +787,8 @@
           <div class="case-tag">${item.tag}</div>
           <div class="case-location">${item.location}</div>
           <div class="case-title">${item.title}</div>
-          <div class="case-meta">
-            ${item.meta}
-          </div>
-          <div class="case-thumb">
-            ${item.thumb}
-          </div>
+          <div class="case-meta">${item.meta}</div>
+          <div class="case-thumb">${item.thumb}</div>
         `;
         track.appendChild(article);
       });
