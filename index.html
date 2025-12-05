@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>하비럴 | 디지털 마케팅 포트폴리오</title>
+  <title>H VIRAL │ 하비럴 마케팅 홈페이지 포트폴리오</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- SEO 메타 -->
@@ -141,21 +141,61 @@
       padding: 52px 0 32px;
     }
 
+    /* 히어로 전체 카드 + 좌/우 레이아웃 */
     .hero-inner {
       border-radius: 28px;
       border: 1px solid rgba(148, 163, 184, 0.5);
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), #020617);
       padding: 26px 20px 26px;
       box-shadow: 0 24px 60px rgba(15, 23, 42, 0.85);
-
-      /* 숨쉬는 이미지용 레이아웃 추가 */
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
+    /* 왼쪽 텍스트 영역 */
     .hero-text {
       flex: 1 1 0;
+    }
+
+    /* 오른쪽 숨쉬는 하늘/산/바다 비주얼(칸 느낌 제거) */
+    .hero-visual {
+      flex: 0 0 260px;
+      border: none;
+      box-shadow: none;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), transparent 60%),
+        url("hero-sky-breath.jpg") center/cover no-repeat;
+      position: relative;
+      overflow: hidden;
+      min-height: 160px;
+    }
+
+    /* 숨쉬는 느낌 오버레이 */
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(15, 23, 42, 0.35), transparent 60%);
+      opacity: 0.18;
+      animation: heroBreath 9s ease-in-out infinite;
+    }
+
+    /* 살짝 확대/밝기 변하는 숨쉬기 애니메이션 */
+    @keyframes heroBreath {
+      0% {
+        opacity: 0.15;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.32;
+        transform: scale(1.03);
+      }
+      100% {
+        opacity: 0.18;
+        transform: scale(1);
+      }
     }
 
     .hero-kicker {
@@ -244,42 +284,15 @@
       margin-top: 4px;
     }
 
-    /* 오른쪽 숨쉬는 비주얼 카드 */
-    .hero-visual {
-      flex: 0 0 260px;
-      border-radius: 24px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background:
-        radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), transparent 55%),
-        url("hero-sky-breath.ipg") center/cover no-repeat;
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.9);
-      position: relative;
-      overflow: hidden;
-      min-height: 160px;
-    }
-
-    /* 숨쉬는 느낌 오버레이 */
-    .hero-visual::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(15, 23, 42, 0.35), transparent 60%);
-      opacity: 0.18;
-      animation: heroBreath 9s ease-in-out infinite;
-    }
-
-    @keyframes heroBreath {
-      0% {
-        opacity: 0.15;
-        transform: scale(1);
+    /* PC 화면에서는 좌우 2열, 모바일에서는 위/아래 */
+    @media (min-width: 900px) {
+      .hero-inner {
+        flex-direction: row;
+        align-items: stretch;
       }
-      50% {
-        opacity: 0.32;
-        transform: scale(1.03);
-      }
-      100% {
-        opacity: 0.18;
-        transform: scale(1);
+
+      .hero-visual {
+        min-height: 210px;
       }
     }
 
@@ -525,26 +538,16 @@
       line-height: 1.5;
     }
 
-    /* PC에서 히어로 좌우 2열 배치 */
-    @media (min-width: 900px) {
+    @media (min-width: 768px) {
       .hero-inner {
         padding: 30px 26px 28px;
-        flex-direction: row;
-        align-items: stretch;
       }
-
       .hero-title-main {
         font-size: 26px;
       }
-
       .hero-title-sub {
         font-size: 20px;
       }
-
-      .hero-visual {
-        min-height: 210px;
-      }
-
       .case-card {
         flex-basis: 240px;
       }
@@ -795,7 +798,7 @@
       const track = document.querySelector(".case-track");
       if (!track) return;
 
-      // 새로고침마다 순서 랜덤 섞기
+      // 랜덤 섞기 (A 선택)
       const shuffled = cases
         .map((c) => ({ ...c, sort: Math.random() }))
         .sort((a, b) => a.sort - b.sort)
