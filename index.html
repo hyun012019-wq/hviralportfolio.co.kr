@@ -2,29 +2,31 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>하비럴(HVIRAL) 포트폴리오 │ 수도권 기반 디지털 마케팅 파트너</title>
+  <title>하비럴 | 디지털 마케팅 포트폴리오</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- META 기본 -->
-  <meta name="description" content="하비럴(HVIRAL) 포트폴리오. 실제 공간·상권을 기반으로 한 디지털 마케팅 사례 중심 안내. 광고비만 나가고 성과가 없었던 브랜드의 문의 전환 구조를 함께 설계합니다.">
-  <meta name="keywords" content="하비럴, HVIRAL, 디지털 마케팅, 포트폴리오, 상권 분석, 홈페이지 제작, 문의 전환, 수도권 마케팅">
+  <!-- SEO 메타 -->
+  <meta name="description" content="하비럴(HVIRAL) 디지털 마케팅 포트폴리오. 실제 매장 환경 중심 사례 기반, 고객 유입과 문의 전환을 목표로 설계된 성과 중심 포트폴리오입니다.">
+  <meta name="keywords" content="하비럴, 하비럴 마케팅, 하비럴 광고, 하비럴 디지털 마케팅, 디지털마케팅 포트폴리오, 홈페이지 제작 포트폴리오">
 
-  <!-- OG -->
-  <meta property="og:title" content="하비럴(HVIRAL) 포트폴리오 │ 디지털 마케팅 사례" />
-  <meta property="og:description" content="광고비만 나가고, 성과는 없으셨나요? 하비럴은 ‘문의’로 결과를 말합니다. 실제 공간·상권 기반 디지털 마케팅 사례를 확인해 보세요." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://hviralportfolio.co.kr/" />
-  <meta property="og:image" content="https://hviral.co.kr/og-image-wide.png" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="하비럴 | 디지털 마케팅 포트폴리오">
+  <meta property="og:description" content="광고비만 나가고, 성과는 없으셨나요? 하비럴은 문의로 결과를 말합니다. 실제 공간 중심 사례 기반 포트폴리오.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hviralportfolio.co.kr/">
+  <meta property="og:image" content="https://hviral.co.kr/og-image-wide.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
   <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="하비럴(HVIRAL) 디지털 마케팅 포트폴리오" />
-  <meta name="twitter:description" content="실제 공간·상권 기반 디지털 마케팅 사례 포트폴리오." />
-  <meta name="twitter:image" content="https://hviral.co.kr/og-image-wide.png" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="하비럴 | 디지털 마케팅 포트폴리오">
+  <meta name="twitter:description" content="성과 중심 디지털 마케팅 사례 포트폴리오">
+  <meta name="twitter:image" content="https://hviral.co.kr/og-image-wide.png">
 
-  <!-- Favicon (본사와 통일) -->
-  <link rel="icon" type="image/svg+xml" href="/favicon-16x16.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <!-- Favicon (메인 사이트와 통일) -->
+  <link rel="icon" type="image/svg+xml" href="https://hviral.co.kr/favicon-16x16.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://hviral.co.kr/favicon-32x32.png" />
 
   <style>
     * {
@@ -37,16 +39,12 @@
       width: 100%;
       max-width: 100%;
       overflow-x: hidden;
-      scroll-behavior: smooth;
     }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
         "Noto Sans KR", system-ui, sans-serif;
-      background: radial-gradient(circle at top left,
-        #1f3b78 0,
-        #020617 55%,
-        #000 100%);
+      background: radial-gradient(circle at top left, #1f3b78 0, #020617 55%, #000 100%);
       color: #e5e7eb;
       line-height: 1.6;
       min-height: 100vh;
@@ -64,7 +62,7 @@
     .container {
       max-width: 1080px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 20px 80px;
     }
 
     /* 헤더 */
@@ -75,24 +73,27 @@
       backdrop-filter: blur(14px);
       background: linear-gradient(
         to bottom,
-        rgba(3, 7, 18, 0.92),
-        rgba(3, 7, 18, 0.7)
+        rgba(3, 7, 18, 0.95),
+        rgba(3, 7, 18, 0.65)
       );
       border-bottom: 1px solid rgba(148, 163, 184, 0.3);
     }
 
     .nav {
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 64px;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 20px;
     }
 
-    .logo-area {
+    .nav-left {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      cursor: pointer;
+      gap: 2px;
     }
 
     .logo-main {
@@ -104,336 +105,317 @@
     .logo-sub {
       font-size: 11px;
       color: #9ca3af;
-      margin-top: 2px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 13px;
+      gap: 10px;
     }
 
     .nav-link {
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: #e5e7eb;
+      font-size: 13px;
+      color: #cbd5f5;
     }
 
-    .nav-cta {
+    .nav-link:hover {
+      color: #ffffff;
+    }
+
+    .nav-btn {
       padding: 8px 16px;
       border-radius: 999px;
       background: #2563eb;
-      font-weight: 600;
       color: #fff;
+      font-size: 13px;
+      font-weight: 600;
     }
 
-    .nav-cta:hover {
-      background: #1d4ed8;
-    }
-
-    /* 히어로 영역 */
+    /* 히어로 */
     .hero {
-      padding: 72px 0 40px;
+      padding: 52px 0 32px;
     }
 
-    .hero-layout {
-      display: grid;
-      gap: 24px;
-    }
-
-    @media (min-width: 900px) {
-      .hero-layout {
-        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-        align-items: center;
-      }
+    .hero-inner {
+      border-radius: 28px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), #020617);
+      padding: 26px 20px 26px;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.85);
     }
 
     .hero-kicker {
       font-size: 11px;
+      color: #93c5fd;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #9ca3af;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    .hero-title {
-      font-size: 28px;
-      font-weight: 800;
+    .hero-title-main {
+      font-size: 22px;
       line-height: 1.4;
+      font-weight: 800;
+      margin-bottom: 6px;
     }
 
-    .hero-title span {
-      color: #bfdbfe;
+    .hero-title-main strong {
+      color: #f97316;
+      font-weight: 800;
     }
 
-    .hero-sub {
-      margin-top: 14px;
-      font-size: 15px;
+    .hero-title-sub {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .hero-desc {
+      font-size: 13px;
       color: #cbd5f5;
+      margin-bottom: 18px;
     }
 
-    .hero-sub strong {
+    .hero-desc strong {
       font-weight: 600;
       color: #e5e7eb;
     }
 
-    .hero-note {
-      margin-top: 12px;
-      font-size: 12px;
-      color: #9ca3af;
-    }
-
-    .hero-actions {
-      margin-top: 20px;
+    .hero-badge-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 6px;
+      margin-bottom: 14px;
     }
 
-    .btn-primary {
-      padding: 10px 18px;
+    .hero-pill {
+      font-size: 11px;
+      padding: 4px 10px;
       border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .hero-cta {
+      flex-shrink: 0;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .hero-cta.primary {
       background: #2563eb;
-      font-size: 14px;
-      font-weight: 700;
       color: #fff;
     }
 
-    .btn-primary:hover {
-      background: #1d4ed8;
-    }
-
-    .btn-ghost {
-      padding: 9px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      font-size: 13px;
+    .hero-cta.secondary {
+      background: #111827;
       color: #e5e7eb;
-      background: rgba(15, 23, 42, 0.8);
-    }
-
-    .hero-panel {
-      border-radius: 22px;
-      border: 1px solid rgba(148, 163, 184, 0.55);
-      background: radial-gradient(circle at top,
-        rgba(37, 99, 235, 0.35),
-        rgba(15, 23, 42, 0.98));
-      padding: 20px 18px 18px;
-      font-size: 13px;
-    }
-
-    .hero-panel-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .hero-panel-list {
-      margin-top: 8px;
-      padding-left: 16px;
-    }
-
-    .hero-panel-list li {
-      list-style: disc;
-      margin-bottom: 4px;
-      color: #e5e7eb;
-    }
-
-    /* 상단 사례 슬라이더 (텍스트) */
-    .case-strip {
-      margin-top: 34px;
-      border-radius: 20px;
       border: 1px solid rgba(148, 163, 184, 0.6);
-      background: rgba(15, 23, 42, 0.92);
-      padding: 12px 14px;
-      overflow: hidden;
-      position: relative;
     }
 
-    .case-strip-label {
+    .hero-note {
       font-size: 11px;
-      letter-spacing: 0.16em;
       color: #9ca3af;
-      text-transform: uppercase;
-      margin-bottom: 6px;
+      margin-top: 4px;
     }
 
-    .case-strip-inner {
-      position: relative;
-      min-height: 42px;
-    }
-
-    .case-strip-item {
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      font-size: 13px;
-    }
-
-    .case-strip-item.active {
-      opacity: 1;
-    }
-
-    .case-strip-item-title {
-      font-weight: 600;
-    }
-
-    .case-strip-item-desc {
-      font-size: 12px;
-      color: #cbd5f5;
-    }
-
-    /* 포트폴리오 섹션 헤더 */
-    .section {
-      padding: 10px 0 10px;
-    }
-
-    .section-header {
-      margin: 28px 0 10px;
-    }
-
-    .section-kicker {
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      color: #9ca3af;
-      text-transform: uppercase;
-    }
-
+    /* 사례 슬라이더 섹션 */
     .section-title {
-      margin-top: 6px;
+      margin: 30px 0 8px;
       font-size: 18px;
       font-weight: 800;
     }
 
     .section-sub {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 14px;
+    }
+
+    .case-slider {
       margin-top: 6px;
-      font-size: 13px;
-      color: #9ca3af;
-    }
-
-    /* 사례 카드 슬라이더 (하단) */
-    .portfolio-slider-wrap {
-      margin-top: 16px;
       border-radius: 22px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      background: rgba(15, 23, 42, 0.96);
-      padding: 18px 16px 20px;
-    }
-
-    .portfolio-slider-frame {
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #020617;
+      padding: 14px 10px 16px;
       overflow: hidden;
-      position: relative;
-      min-height: 120px;
     }
 
-    .portfolio-card {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      opacity: 0;
-      transform: translateX(6%);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      border-radius: 16px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      padding: 14px 14px 12px;
-      background: radial-gradient(circle at top left,
-        rgba(37, 99, 235, 0.45),
-        #020617 70%);
+    .case-slider-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6px 8px;
     }
 
-    .portfolio-card.active {
-      opacity: 1;
-      transform: translateX(0);
+    .case-slider-title {
+      font-size: 13px;
+      font-weight: 600;
     }
 
-    .portfolio-tag {
+    .case-slider-tag {
       font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .case-row {
+      overflow: hidden;
+      margin-top: 2px;
+    }
+
+    .case-track {
+      display: flex;
+      gap: 12px;
+      animation: slideCases 40s linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes slideCases {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .case-card {
+      flex: 0 0 220px;
+      border-radius: 18px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: radial-gradient(circle at top, rgba(31, 64, 104, 0.7), #020617);
+      padding: 10px 10px 12px;
+      font-size: 12px;
+    }
+
+    .case-tag {
+      font-size: 10px;
       color: #bfdbfe;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 6px;
     }
 
-    .portfolio-title {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .portfolio-meta {
+    .case-location {
       font-size: 11px;
-      color: #9ca3af;
-      margin-bottom: 6px;
-    }
-
-    .portfolio-text {
-      font-size: 13px;
       color: #e5e7eb;
-      opacity: 0.96;
+      margin-top: 4px;
     }
 
-    .portfolio-footnote {
-      margin-top: 12px;
+    .case-title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .case-meta {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 6px;
+    }
+
+    .case-thumb {
+      margin-top: 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(15, 23, 42, 0.9);
+      background: linear-gradient(135deg, #1f2937, #020617);
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 11px;
       color: #9ca3af;
     }
 
-    /* 문의 섹션 */
-    .contact-section {
-      margin: 32px 0 24px;
-      border-radius: 22px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      background: rgba(3, 7, 18, 0.96);
-      padding: 18px 16px 18px;
-    }
-
-    .contact-title {
-      font-size: 17px;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-
-    .contact-sub {
-      font-size: 13px;
-      color: #9ca3af;
-      margin-bottom: 12px;
-    }
-
-    .contact-grid {
+    /* 설명 섹션 */
+    .info-grid {
+      margin-top: 22px;
       display: grid;
       gap: 12px;
     }
 
-    @media (min-width: 900px) {
-      .contact-grid {
-        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    @media (min-width: 768px) {
+      .info-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
-    .contact-note {
+    .info-card {
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
+      padding: 14px 14px 14px;
       font-size: 12px;
-      color: #cbd5f5;
     }
 
-    .contact-note strong {
+    .info-label {
+      font-size: 11px;
+      color: #93c5fd;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .info-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .info-text {
+      font-size: 12px;
+      color: #d1d5db;
+    }
+
+    .info-text strong {
       font-weight: 600;
-      color: #e5e7eb;
+    }
+
+    /* 상담 섹션 */
+    .contact-section {
+      margin-top: 30px;
+    }
+
+    .contact-card {
+      border-radius: 22px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.98);
+      padding: 16px 16px 14px;
+      font-size: 13px;
+    }
+
+    .contact-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .contact-sub {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 12px;
     }
 
     .contact-list {
-      margin-top: 8px;
-      padding-left: 16px;
       font-size: 12px;
-      color: #9ca3af;
+      color: #e5e7eb;
+      margin-bottom: 12px;
     }
 
     .contact-list li {
-      list-style: disc;
       margin-bottom: 4px;
     }
 
@@ -441,11 +423,12 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 12px;
+      margin-top: 6px;
     }
 
     .contact-actions a {
       flex: 1;
+      min-width: 130px;
       text-align: center;
       padding: 10px 0;
       border-radius: 999px;
@@ -453,323 +436,364 @@
       font-weight: 600;
     }
 
-    .contact-kakao {
+    .btn-kakao {
       background: #facc15;
       color: #000;
     }
 
-    .contact-kakao:hover {
-      filter: brightness(0.95);
-    }
-
-    .contact-home {
+    .btn-home {
       background: #111827;
-      border: 1px solid rgba(148, 163, 184, 0.7);
       color: #e5e7eb;
+      border: 1px solid rgba(148, 163, 184, 0.7);
     }
 
     /* 푸터 */
     footer {
       border-top: 1px solid rgba(31, 41, 55, 0.9);
-      padding: 18px 0 26px;
+      padding: 16px 20px 18px;
       font-size: 11px;
-      text-align: center;
       color: #9ca3af;
       background: #020617;
-      margin-top: 28px;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
     }
 
     .footer-main {
-      margin-bottom: 8px;
+      font-size: 11px;
+      margin-bottom: 6px;
     }
 
     .small-legal {
+      margin-top: 6px;
       font-size: 10px;
-      color: #64748b;
-      opacity: 0.68;
+      color: #6b7280;
       line-height: 1.5;
     }
 
-    @media (max-width: 768px) {
-      .hero-title {
-        font-size: 24px;
+    @media (min-width: 768px) {
+      .hero-inner {
+        padding: 30px 26px 28px;
       }
-      .hero {
-        padding-top: 64px;
+      .hero-title-main {
+        font-size: 26px;
+      }
+      .hero-title-sub {
+        font-size: 20px;
+      }
+      .case-card {
+        flex-basis: 240px;
       }
     }
   </style>
 </head>
-
 <body>
   <!-- 헤더 -->
   <header>
-    <div class="container">
-      <nav class="nav">
-        <div class="logo-area" onclick="goHome()">
-          <div class="logo-main">HVIRAL</div>
-          <div class="logo-sub">디지털 마케팅 포트폴리오</div>
-        </div>
-        <div class="nav-right">
-          <a href="https://hviral.co.kr" class="nav-link" target="_blank" rel="noopener">
-            둘러보기
-          </a>
-          <a href="https://open.kakao.com/o/sdxcyB4h" class="nav-cta" target="_blank" rel="noopener">
-            무료 상담
-          </a>
-        </div>
-      </nav>
+    <div class="nav">
+      <div class="nav-left">
+        <div class="logo-main">HVIRAL</div>
+        <div class="logo-sub">HAVIRAL DIGITAL PORTFOLIO</div>
+      </div>
+      <div class="nav-right">
+        <a href="https://hviral.co.kr/" class="nav-link" target="_blank" rel="noopener">본사 홈페이지</a>
+        <a href="https://open.kakao.com/o/s0ogfV3h" class="nav-btn" target="_blank" rel="noopener">상담 문의</a>
+      </div>
     </div>
   </header>
 
   <!-- 메인 -->
   <main>
     <section class="hero">
-      <div class="container hero-layout">
-        <!-- 왼쪽 텍스트 -->
-        <div>
-          <div class="hero-kicker">HVIRAL PORTFOLIO</div>
-          <h1 class="hero-title">
-            광고비만 나가고, <span>성과는 없으셨나요?</span><br />
-            하비럴은 “문의”로 결과를 말합니다.
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-kicker">DIGITAL MARKETING PORTFOLIO</div>
+          <h1 class="hero-title-main">
+            광고비만 나가고, 성과는 없으셨나요?<br />
+            <strong>하비럴은 문의로 결과를 말합니다.</strong>
           </h1>
-          <p class="hero-sub">
-            수도권 중심 실사·상권 기반 디지털 마케팅 파트너, <strong>하비럴(HVIRAL)</strong>.<br />
-            실제 공간과 상권 데이터를 기준으로, “손님이 어떻게 들어와서<br />
-            어디에서 이탈하는지”를 먼저 보고 전략을 설계합니다.
+          <h2 class="hero-title-sub">
+            수도권 중심 본사 기반 디지털 마케팅 그룹, 하비럴(HVIRAL)
+          </h2>
+          <p class="hero-desc">
+            이 포트폴리오는 <strong>실제 매장·오피스 환경과 디지털 유입 흐름</strong>을 기준으로,
+            브랜드가 어떻게 <strong>검색–방문–문의</strong>까지 이어질 수 있는지
+            사례형으로 정리한 화면입니다. 과장된 문구가 아닌,
+            <strong>고객 문의 중심</strong>의 관점으로만 설명합니다.
           </p>
+
+          <div class="hero-badge-row">
+            <span class="hero-pill">실제 공간 중심 사례 정리</span>
+            <span class="hero-pill">문의·예약 흐름 기준 설계</span>
+            <span class="hero-pill">과장 없는 디지털 포트폴리오</span>
+          </div>
+
+          <div class="hero-cta-row">
+            <a href="https://open.kakao.com/o/s0ogfV3h" class="hero-cta primary" target="_blank" rel="noopener">
+              카카오톡으로 상담 문의
+            </a>
+            <a href="https://hviral.co.kr/" class="hero-cta secondary" target="_blank" rel="noopener">
+              하비럴 본사 홈페이지 보기
+            </a>
+          </div>
           <p class="hero-note">
-            상담 및 미팅은 <strong>사전 예약제</strong>로 진행되며,<br />
-            현재 사업장 상황·목표 문의 수·예상 예산을 공유해 주시면<br />
-            가능한 방향과 예상 그림을 먼저 설명드립니다.
+            * 상담은 사전 예약제로 진행되며, 업종·지역·현재 상황을 먼저 여쭤본 뒤 방향을 함께 정리합니다.
           </p>
-          <div class="hero-actions">
-            <a href="https://open.kakao.com/o/sdxcyB4h" class="btn-primary" target="_blank" rel="noopener">
-              무료 상담
-            </a>
-            <a href="https://hviral.co.kr" class="btn-ghost" target="_blank" rel="noopener">
-              하비럴 메인 페이지 둘러보기
-            </a>
-          </div>
+        </div>
 
-          <!-- 상단 텍스트 슬라이더 -->
-          <div class="case-strip">
-            <div class="case-strip-label">실제 공간·상권 기반 구성</div>
-            <div class="case-strip-inner" id="caseStripInner">
-              <div class="case-strip-item active">
-                <div class="case-strip-item-title">논현 ㅇㅇ미용실 · 인입 구조 리빌딩</div>
-                <div class="case-strip-item-desc">동선·메뉴 구성·예약 채널을 함께 조정한 문의 유입 개선 사례</div>
-              </div>
-              <div class="case-strip-item">
-                <div class="case-strip-item-title">평택 ㅇㅇㅇ헬스장 · 검색 → 상담 전환 사례</div>
-                <div class="case-strip-item-desc">검색 키워드·페이지 구조·상담 동선 정비로 방문 문의를 올린 구조</div>
-              </div>
-              <div class="case-strip-item">
-                <div class="case-strip-item-title">시흥 ㅇㅇ치과 · 신뢰 자산 중심 브랜딩 사례</div>
-                <div class="case-strip-item-desc">진료 스토리·의사 소개·후기 레이어를 재정비한 장기 유입 구조</div>
-              </div>
+        <!-- 사례 슬라이더 -->
+        <h3 class="section-title">지역·업종별 디지털 마케팅 포트폴리오</h3>
+        <p class="section-sub">
+          실제 상권 구조와 유입 패턴을 기준으로 정리한 사례형 포트폴리오입니다.
+          <br />한 화면에서 여러 업종을 자연스럽게 살펴볼 수 있도록 자동으로 순환됩니다.
+        </p>
+
+        <div class="case-slider" aria-label="디지털 마케팅 사례 포트폴리오">
+          <div class="case-slider-header">
+            <div class="case-slider-title">실제 공간 기반 포트폴리오</div>
+            <div class="case-slider-tag">* 유형별 구조 설계 예시</div>
+          </div>
+          <div class="case-row">
+            <div class="case-track">
+              <!-- 1세트 -->
+              <article class="case-card">
+                <div class="case-tag">CASE 01</div>
+                <div class="case-location">논현동 · 뷰티 살롱</div>
+                <div class="case-title">재방문 고객 중심 예약 구조 설계</div>
+                <div class="case-meta">
+                  상권 특성상 재방문 비중이 높은 매장. 예약·후기 흐름을 기준으로
+                  디지털 채널을 정렬한 사례형 포트폴리오입니다.
+                </div>
+                <div class="case-thumb">
+                  논현동 뷰티 살롱 내부·시술 공간 중심 이미지 배치
+                </div>
+              </article>
+
+              <article class="case-card">
+                <div class="case-tag">CASE 02</div>
+                <div class="case-location">평택 · 헬스장</div>
+                <div class="case-title">출퇴근 시간대 집중 유입 구조</div>
+                <div class="case-meta">
+                  아침·저녁 피크 타임에 맞춰 검색–상담–등록까지 흐름을 정리한
+                  시간대 중심 디지털 인입 구조 예시입니다.
+                </div>
+                <div class="case-thumb">
+                  헬스장 기구·운동존 중심 실내 공간 구성
+                </div>
+              </article>
+
+              <article class="case-card">
+                <div class="case-tag">CASE 03</div>
+                <div class="case-location">시흥 · 치과</div>
+                <div class="case-title">상담 문의 중심 페이지 구성</div>
+                <div class="case-meta">
+                  진료 항목보다 상담 동선을 우선 배치해
+                  문의 전환율을 고려한 페이지 구조 예시입니다.
+                </div>
+                <div class="case-thumb">
+                  대기실·진료실 환경 중심 사진 활용
+                </div>
+              </article>
+
+              <article class="case-card">
+                <div class="case-tag">CASE 04</div>
+                <div class="case-location">수원 · 카페</div>
+                <div class="case-title">피크 타임·객단가 기반 메뉴 노출</div>
+                <div class="case-meta">
+                  시간대별 인기 메뉴와 좌석 회전율을 고려해,
+                  메뉴·공간 사진 중심으로 구성한 카페 포트폴리오입니다.
+                </div>
+                <div class="case-thumb">
+                  매장 전경·좌석 배치 중심 실사 이미지
+                </div>
+              </article>
+
+              <article class="case-card">
+                <div class="case-tag">CASE 05</div>
+                <div class="case-location">천안 · 공인중개사</div>
+                <div class="case-title">상담 예약·매물 문의 흐름 정리</div>
+                <div class="case-meta">
+                  방문·전화·카카오 문의를 한 화면에서 정리해
+                  상담 예약 구조를 단순화한 사례 예시입니다.
+                </div>
+                <div class="case-thumb">
+                  사무실 내부·미팅 공간 중심 구도
+                </div>
+              </article>
+
+              <article class="case-card">
+                <div class="case-tag">CASE 06</div>
+                <div class="case-location">부산 · 제조·B2B</div>
+                <div class="case-title">견적 문의 중심 B2B 인입 구조</div>
+                <div class="case-meta">
+                  제품 설명보다 ‘어떤 일을 함께 할 수 있는지’를 기준으로
+                  문의·상담 위주로 설계한 B2B 포트폴리오입니다.
+                </div>
+                <div class="case-thumb">
+                  생산 라인·오피스 공간 중심 구조 사진
+                </div>
+              </article>
+
+              <!-- 무한 루프용 2세트 복제 -->
+              <article class="case-card">
+                <div class="case-tag">CASE 01</div>
+                <div class="case-location">논현동 · 뷰티 살롱</div>
+                <div class="case-title">재방문 고객 중심 예약 구조 설계</div>
+                <div class="case-meta">
+                  상권 특성상 재방문 비중이 높은 매장. 예약·후기 흐름을 기준으로
+                  디지털 채널을 정렬한 사례형 포트폴리오입니다.
+                </div>
+                <div class="case-thumb">
+                  논현동 뷰티 살롱 내부·시술 공간 중심 이미지 배치
+                </div>
+              </article>
+
+              <article class="case-card">
+                <div class="case-tag">CASE 02</div>
+                <div class="case-location">평택 · 헬스장</div>
+                <div class="case-title">출퇴근 시간대 집중 유입 구조</div>
+                <div class="case-meta">
+                  아침·저녁 피크 타임에 맞춰 검색–상담–등록까지 흐름을 정리한
+                  시간대 중심 디지털 인입 구조 예시입니다.
+                </div>
+                <div class="case-thumb">
+                  헬스장 기구·운동존 중심 실내 공간 구성
+                </div>
+              </article>
+
+              <article class="case-card">
+                <div class="case-tag">CASE 03</div>
+                <div class="case-location">시흥 · 치과</div>
+                <div class="case-title">상담 문의 중심 페이지 구성</div>
+                <div class="case-meta">
+                  진료 항목보다 상담 동선을 우선 배치해
+                  문의 전환율을 고려한 페이지 구조 예시입니다.
+                </div>
+                <div class="case-thumb">
+                  대기실·진료실 환경 중심 사진 활용
+                </div>
+              </article>
+
+              <article class="case-card">
+                <div class="case-tag">CASE 04</div>
+                <div class="case-location">수원 · 카페</div>
+                <div class="case-title">피크 타임·객단가 기반 메뉴 노출</div>
+                <div class="case-meta">
+                  시간대별 인기 메뉴와 좌석 회전율을 고려해,
+                  메뉴·공간 사진 중심으로 구성한 카페 포트폴리오입니다.
+                </div>
+                <div class="case-thumb">
+                  매장 전경·좌석 배치 중심 실사 이미지
+                </div>
+              </article>
+
+              <article class="case-card">
+                <div class="case-tag">CASE 05</div>
+                <div class="case-location">천안 · 공인중개사</div>
+                <div class="case-title">상담 예약·매물 문의 흐름 정리</div>
+                <div class="case-meta">
+                  방문·전화·카카오 문의를 한 화면에서 정리해
+                  상담 예약 구조를 단순화한 사례 예시입니다.
+                </div>
+                <div class="case-thumb">
+                  사무실 내부·미팅 공간 중심 구도
+                </div>
+              </article>
+
+              <article class="case-card">
+                <div class="case-tag">CASE 06</div>
+                <div class="case-location">부산 · 제조·B2B</div>
+                <div class="case-title">견적 문의 중심 B2B 인입 구조</div>
+                <div class="case-meta">
+                  제품 설명보다 ‘어떤 일을 함께 할 수 있는지’를 기준으로
+                  문의·상담 위주로 설계한 B2B 포트폴리오입니다.
+                </div>
+                <div class="case-thumb">
+                  생산 라인·오피스 공간 중심 구조 사진
+                </div>
+              </article>
             </div>
           </div>
         </div>
 
-        <!-- 오른쪽 요약 패널 -->
-        <aside class="hero-panel">
-          <div class="hero-panel-title">하비럴은 이런 브랜드와 맞습니다.</div>
-          <ul class="hero-panel-list">
-            <li>광고비는 썼는데, <strong>어디서 새는지</strong> 잘 보이지 않는 경우</li>
-            <li>“홈페이지·블로그·SNS가 <strong>제각각</strong>”이라 느껴지는 경우</li>
-            <li>상담은 오지만 <strong>재방문·재계약 비율</strong>이 낮은 경우</li>
-            <li>가맹본부·프랜차이즈처럼 <strong>여러 지점 데이터를 함께</strong> 보고 싶은 경우</li>
-          </ul>
-          <p class="hero-note" style="margin-top:10px;">
-            모든 사례는 <strong>실제 공간·상권</strong>을 기반으로 구성되며,<br />
-            향후 사장님 사업장 상황에 맞춰 별도의 전략으로 재설계됩니다.
-          </p>
-        </aside>
-      </div>
-    </section>
-
-    <!-- 포트폴리오 섹션 -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-kicker">PORTFOLIO OVERVIEW</div>
-          <h2 class="section-title">실제 공간·상권을 기준으로 보는 디지털 마케팅 사례</h2>
-          <p class="section-sub">
-            지점명·업종·상권 특성을 기준으로, 인입 구조와 문의 전환 방식을 함께 정리합니다.
-          </p>
-        </div>
-
-        <div class="portfolio-slider-wrap">
-          <div class="portfolio-slider-frame" id="portfolioSlider">
-            <!-- 카드 1 -->
-            <article class="portfolio-card active">
-              <div class="portfolio-tag">CASE 01 · BEAUTY</div>
-              <h3 class="portfolio-title">논현 ㅇㅇ미용실 · 예약률 개선 사례</h3>
-              <div class="portfolio-meta">논현동 상권 · 2030 여성 타깃 · 카카오/인스타 병행 운용</div>
-              <p class="portfolio-text">
-                매장 사진은 그대로인데, <strong>메뉴 구조·상담 카피·예약 동선</strong>만 재정리해도
-                예약률이 달라질 수 있습니다. 기존 고객과 신규 고객의 진입 경로를 분리해 보고,
-                “어디서 돌아가는지”를 기준으로 다시 설계한 사례입니다.
-              </p>
-            </article>
-
-            <!-- 카드 2 -->
-            <article class="portfolio-card">
-              <div class="portfolio-tag">CASE 02 · FITNESS</div>
-              <h3 class="portfolio-title">평택 ㅇㅇㅇ헬스장 · 검색 유입 전환 사례</h3>
-              <div class="portfolio-meta">평택 주거 상권 · 20–40 직장인 타깃 · 검색 광고 + 지도 연동</div>
-              <p class="portfolio-text">
-                “헬스장 이름 + 지역”으로 검색했을 때, <strong>어떤 화면과 문장이 먼저 보이는지</strong>가
-                문의 수를 가릅니다. 검색·지도·홈페이지·상담톡을 <strong>하나의 흐름</strong>으로 묶어
-                재설계한 뒤, 야간 타임 중심으로 회원 문의를 끌어올린 구조입니다.
-              </p>
-            </article>
-
-            <!-- 카드 3 -->
-            <article class="portfolio-card">
-              <div class="portfolio-tag">CASE 03 · DENTAL</div>
-              <h3 class="portfolio-title">시흥 ㅇㅇ치과 · 신뢰도 중심 브랜딩 사례</h3>
-              <div class="portfolio-meta">시흥 신도시 상권 · 패밀리 타깃 · 진료 스토리 중심 구조</div>
-              <p class="portfolio-text">
-                치과는 <strong>“어디를 선택할지”</strong>보다 <strong>“어디를 피할지”</strong>가 먼저 결정되는 업종입니다.
-                그래서 과장된 문구 대신, 의료진·장비·동네 스토리를 연결해
-                <strong>“괜찮은 선택지”</strong>로 보이게 만드는 브랜딩 구조를 사용합니다.
-              </p>
-            </article>
-
-            <!-- 카드 4 -->
-            <article class="portfolio-card">
-              <div class="portfolio-tag">CASE 04 · FRANCHISE</div>
-              <h3 class="portfolio-title">수도권 ○○ 프랜차이즈 · 가맹 문의 구조 설계</h3>
-              <div class="portfolio-meta">수도권 전역 · 창업 희망자 타깃 · 랜딩페이지 + 상담 구조</div>
-              <p class="portfolio-text">
-                가맹점 수가 늘어날수록, 개별 점포 광고보다 <strong>“본부 단위 그림”</strong>이 중요해집니다.
-                브랜드 스토리·수익 구조·지원 내용을 하나로 묶어, 가맹 문의가
-                <strong>“단순 관심”에서 “실제 상담”</strong>으로 이어질 수 있도록 설계한 구조입니다.
-              </p>
-            </article>
-
-            <!-- 카드 5 -->
-            <article class="portfolio-card">
-              <div class="portfolio-tag">CASE 05 · PROFESSIONAL</div>
-              <h3 class="portfolio-title">강남권 전문직 서비스 · 문의 질 개선 사례</h3>
-              <div class="portfolio-meta">강남·서초권 · 고관여 서비스 · 소개 + 검색 동시 운용</div>
-              <p class="portfolio-text">
-                단순 노출이 아니라, <strong>“어떤 사람이 문의를 남기는지”</strong>가 중요한 업종입니다.
-                기존 의뢰인·소개·검색 유입의 비율을 나눠 본 뒤,
-                하이리스크 문의보다 <strong>맞는 고객이 먼저 들어오도록</strong> 정렬한 사례입니다.
-              </p>
-            </article>
-
-            <!-- 카드 6 -->
-            <article class="portfolio-card">
-              <div class="portfolio-tag">CASE 06 · LOCAL</div>
-              <h3 class="portfolio-title">수도권 로컬 매장 · 동네 단골 구조 설계</h3>
-              <div class="portfolio-meta">수도권 골목 상권 · 동네 주민 타깃 · 로컬 브랜딩 구조</div>
-              <p class="portfolio-text">
-                모든 매장이 “전국구”가 될 필요는 없습니다. <strong>“이 동네에서만 잘 되면 되는 가게”</strong>를
-                위한 브랜딩은 방향이 다릅니다. 동네 맥락·단골 패턴·재방문 동선을 기준으로,
-                로컬 브랜드에 맞는 구조를 설계한 사례입니다.
-              </p>
-            </article>
+        <!-- 설명 섹션 -->
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-label">PORTFOLIO POINT</div>
+            <div class="info-title">실제 공간·동선 중심 화면 구성</div>
+            <p class="info-text">
+              하비럴 포트폴리오는 <strong>얼굴·모델 중심 이미지</strong>가 아니라,
+              <strong>매장·병원·오피스 환경</strong>과 동선을 기준으로 정리됩니다.
+              방문 전 고객이 머릿속에 그려보는 <strong>공간 이미지</strong>가
+              문의·예약 결정에 직접적인 영향을 준다고 보기 때문입니다.
+            </p>
           </div>
 
-          <p class="portfolio-footnote">
-            ※ 상호 및 일부 정보는 비공개 처리되며, 사례는 이해를 돕기 위한 포트폴리오 구성용 예시입니다.<br />
-            모든 구조는 실제 공간·상권을 기반으로 설계되며, 향후 각 사업장 상황에 맞춰 별도로 재구성됩니다.
-          </p>
-        </div>
-      </div>
-    </section>
+          <div class="info-card">
+            <div class="info-label">STRUCTURE FIRST</div>
+            <div class="info-title">‘예쁜 화면’보다 구조를 먼저 봅니다</div>
+            <p class="info-text">
+              포트폴리오는 디자인 전시가 아니라
+              <strong>검색–방문–문의–예약까지 이어지는 구조</strong>를 보여주는 도구입니다.
+              각 사례는 상권·업종·객단가·시간대·재방문 패턴에 맞춰
+              <strong>어떤 흐름으로 설계되었는지</strong>를 기준으로 설명합니다.
+            </p>
+          </div>
 
-    <!-- 상담 안내 -->
-    <section class="section">
-      <div class="container">
-        <div class="contact-section">
-          <div class="contact-grid">
-            <div>
-              <h3 class="contact-title">상담·미팅 안내</h3>
-              <p class="contact-sub">
-                하비럴은 <strong>수도권 중심 상담 오피스</strong>를 기반으로 운영되며,
-                상담 및 미팅은 사전 예약제로 진행됩니다.
-              </p>
-              <p class="contact-note">
-                <strong>이런 내용이 있으시다면,</strong><br />
-                현재 상황을 정리하지 못한 상태여도 괜찮습니다. 편하게 말씀해 주세요.
-              </p>
-              <ul class="contact-list">
-                <li>오픈 예정 매장의 상권·입지에 대한 1차 검토가 필요할 때</li>
-                <li>이미 광고를 하고 있는데, <strong>어디서부터 정리해야 할지</strong> 막막할 때</li>
-                <li>프랜차이즈·전문직처럼 <strong>여러 지점·고객군을 함께</strong> 보고 싶을 때</li>
-              </ul>
-            </div>
-            <div>
-              <p class="contact-note">
-                📍 <strong>상담 오피스</strong><br />
-                수도권(강남권 중심)에서 상담·미팅 진행<br />
-                (상담 및 미팅은 <strong>사전 예약제</strong>로 운영됩니다)
-              </p>
-              <p class="contact-note" style="margin-top:8px;">
-                🕒 <strong>상담 가능 시간</strong><br />
-                평일 10:00 – 18:00 (시간 협의 가능)
-              </p>
-              <div class="contact-actions">
-                <a href="https://open.kakao.com/o/sdxcyB4h" class="contact-kakao" target="_blank" rel="noopener">
-                  카카오톡으로 무료 상담
-                </a>
-                <a href="https://hviral.co.kr" class="contact-home" target="_blank" rel="noopener">
-                  하비럴 메인 둘러보기
-                </a>
-              </div>
-            </div>
+          <div class="info-card">
+            <div class="info-label">NO EXAGGERATION</div>
+            <div class="info-title">과장 없이, 문의 중심으로만</div>
+            <p class="info-text">
+              “확실한 매출 보장”과 같은 표현 대신,
+              <strong>디지털 인프라 관점에서 어디까지 설계되는지</strong>만 명확히 정리합니다.
+              하비럴은 <strong>표시·광고 관련 법령</strong>을 준수하는 범위 안에서,
+              고객이 스스로 판단할 수 있는 정보를 제공하는 것을 원칙으로 합니다.
+            </p>
           </div>
         </div>
+
+        <!-- 상담 섹션 -->
+        <section class="contact-section" id="contact">
+          <div class="contact-card">
+            <h3 class="contact-title">우리 업종·지역도 이렇게 정리될 수 있을까요?</h3>
+            <p class="contact-sub">
+              “지금 우리 브랜드 상황이면, 디지털 쪽은 어디부터 손대야 하는지”
+              <br />하나씩 함께 점검해 드립니다. 간단히 상황만 알려주셔도 됩니다.
+            </p>
+            <ul class="contact-list">
+              <li>· 업종 / 지역 / 현재 온라인 채널(홈페이지, 블로그, 예약 시스템 등)</li>
+              <li>· 월 목표 문의 수 또는 예약 건수</li>
+              <li>· 이미 시도해 본 광고나 마케팅이 있다면, 어떤 부분이 아쉬웠는지</li>
+            </ul>
+            <div class="contact-actions">
+              <a href="https://open.kakao.com/o/s0ogfV3h" class="btn-kakao" target="_blank" rel="noopener">
+                카카오톡으로 상담 문의
+              </a>
+              <a href="https://hviral.co.kr/" class="btn-home" target="_blank" rel="noopener">
+                하비럴 본사 홈페이지에서 더 보기
+              </a>
+            </div>
+          </div>
+        </section>
       </div>
     </section>
   </main>
 
   <!-- 푸터 -->
   <footer>
-    <div class="footer-main">
-      © HVIRAL. All rights reserved.
-    </div>
-    <div class="small-legal">
-      ※ 하비럴은 「표시·광고의 공정화에 관한 법률」, 「개인정보보호법」,<br>
-      「초상권·저작권 관련 규정」을 준수합니다.<br>
-      사례 이미지는 고객 동의 또는 인물 식별이 불가능한 경우에만 사용합니다.
+    <div class="footer-inner">
+      <div class="footer-main">
+        하비럴(HVIRAL) 디지털 마케팅 포트폴리오 페이지입니다. 실제 운영 환경·구조를 이해하기 위한
+        참고용 화면으로, 세부 진행 내용은 개별 상담 후 확정됩니다.
+      </div>
+      <div class="small-legal">
+        ※ 하비럴은 「표시·광고의 공정화에 관한 법률」, 「개인정보보호법」,<br>
+        「초상권·저작권 관련 규정」을 준수합니다.<br>
+        사례 이미지는 고객 동의 또는 인물 식별이 불가능한 경우에만 사용합니다.
+      </div>
     </div>
   </footer>
-
-  <script>
-    // 로고 클릭시 홈
-    function goHome() {
-      window.location.href = "/";
-    }
-
-    // 상단 텍스트 스트립 슬라이더
-    (function () {
-      const items = document.querySelectorAll(".case-strip-item");
-      if (!items.length) return;
-      let idx = 0;
-      setInterval(() => {
-        items[idx].classList.remove("active");
-        idx = (idx + 1) % items.length;
-        items[idx].classList.add("active");
-      }, 2500); // 위쪽도 2.5초 간격
-    })();
-
-    // 하단 포트폴리오 카드 슬라이더
-    (function () {
-      const cards = document.querySelectorAll(".portfolio-card");
-      if (!cards.length) return;
-      let index = 0;
-      setInterval(() => {
-        cards[index].classList.remove("active");
-        index = (index + 1) % cards.length;
-        cards[index].classList.add("active");
-      }, 2500); // 속도 체감 10 근처 느낌 (2.5초 템포)
-    })();
-  </script>
 </body>
 </html>
