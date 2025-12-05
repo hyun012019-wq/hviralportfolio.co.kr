@@ -147,6 +147,15 @@
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.98), #020617);
       padding: 26px 20px 26px;
       box-shadow: 0 24px 60px rgba(15, 23, 42, 0.85);
+
+      /* 숨쉬는 이미지용 레이아웃 추가 */
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .hero-text {
+      flex: 1 1 0;
     }
 
     .hero-kicker {
@@ -233,6 +242,45 @@
       font-size: 11px;
       color: #9ca3af;
       margin-top: 4px;
+    }
+
+    /* 오른쪽 숨쉬는 비주얼 카드 */
+    .hero-visual {
+      flex: 0 0 260px;
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.35), transparent 55%),
+        url("hero-sky-breath.ipg") center/cover no-repeat;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.9);
+      position: relative;
+      overflow: hidden;
+      min-height: 160px;
+    }
+
+    /* 숨쉬는 느낌 오버레이 */
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(15, 23, 42, 0.35), transparent 60%);
+      opacity: 0.18;
+      animation: heroBreath 9s ease-in-out infinite;
+    }
+
+    @keyframes heroBreath {
+      0% {
+        opacity: 0.15;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.32;
+        transform: scale(1.03);
+      }
+      100% {
+        opacity: 0.18;
+        transform: scale(1);
+      }
     }
 
     /* 사례 슬라이더 섹션 */
@@ -477,16 +525,26 @@
       line-height: 1.5;
     }
 
-    @media (min-width: 768px) {
+    /* PC에서 히어로 좌우 2열 배치 */
+    @media (min-width: 900px) {
       .hero-inner {
         padding: 30px 26px 28px;
+        flex-direction: row;
+        align-items: stretch;
       }
+
       .hero-title-main {
         font-size: 26px;
       }
+
       .hero-title-sub {
         font-size: 20px;
       }
+
+      .hero-visual {
+        min-height: 210px;
+      }
+
       .case-card {
         flex-basis: 240px;
       }
@@ -514,47 +572,47 @@
   <main>
     <section class="hero">
       <div class="container">
-       <div class="hero-inner">
-  <!-- 왼쪽 텍스트 영역 -->
-  <div class="hero-text">
-    <div class="hero-kicker">DIGITAL MARKETING PORTFOLIO</div>
-    <h1 class="hero-title-main">
-      광고비만 나가고, 성과는 없으셨나요?<br />
-      <strong>하비럴은 문의로 결과를 말합니다.</strong>
-    </h1>
-    <h2 class="hero-title-sub">
-      수도권 중심 본사 기반 디지털 마케팅 그룹, 하비럴(HVIRAL)
-    </h2>
-    <p class="hero-desc">
-      이 포트폴리오는 <strong>실제 매장·오피스 환경과 디지털 유입 흐름</strong>을 기준으로,
-      브랜드가 어떻게 <strong>검색–방문–문의</strong>까지 이어질 수 있는지
-      사례형으로 정리한 화면입니다. 과장된 문구가 아닌,
-      <strong>고객 입장에서 이해하기 쉬운 언어</strong>만으로 설명합니다.
-    </p>
+        <div class="hero-inner">
+          <!-- 왼쪽 텍스트 영역 -->
+          <div class="hero-text">
+            <div class="hero-kicker">DIGITAL MARKETING PORTFOLIO</div>
+            <h1 class="hero-title-main">
+              광고비만 나가고, 성과는 없으셨나요?<br />
+              <strong>하비럴은 문의로 결과를 말합니다.</strong>
+            </h1>
+            <h2 class="hero-title-sub">
+              수도권 중심 본사 기반 디지털 마케팅 그룹, 하비럴(HVIRAL)
+            </h2>
+            <p class="hero-desc">
+              이 포트폴리오는 <strong>실제 매장·오피스 환경과 디지털 유입 흐름</strong>을 기준으로,
+              브랜드가 어떻게 <strong>검색–방문–문의</strong>까지 이어질 수 있는지
+              사례형으로 정리한 화면입니다. 과장된 문구가 아닌,
+              <strong>고객 입장에서 이해하기 쉬운 언어</strong>만으로 설명합니다.
+            </p>
 
-    <div class="hero-badge-row">
-      <span class="hero-pill">실제 공간 중심 사례 정리</span>
-      <span class="hero-pill">문의·예약 흐름 기준 설계</span>
-      <span class="hero-pill">과장 없는 디지털 포트폴리오</span>
-    </div>
+            <div class="hero-badge-row">
+              <span class="hero-pill">실제 공간 중심 사례 정리</span>
+              <span class="hero-pill">문의·예약 흐름 기준 설계</span>
+              <span class="hero-pill">과장 없는 디지털 포트폴리오</span>
+            </div>
 
-    <div class="hero-cta-row">
-      <a href="https://open.kakao.com/o/sdxcyB4h" class="hero-cta primary" target="_blank" rel="noopener">
-        카카오톡 무료 상담
-      </a>
-      <a href="https://hviral.co.kr/" class="hero-cta secondary" target="_blank" rel="noopener">
-        홈페이지 둘러보기
-      </a>
-    </div>
-    <p class="hero-note">
-      * 상담 및 미팅은 사전 예약제로 진행되며,<br />
-      현재 업종·상권 상황을 공유해 주시면 그에 맞춰 디지털 마케팅 방향을 함께 정리합니다.
-    </p>
-  </div>
+            <div class="hero-cta-row">
+              <a href="https://open.kakao.com/o/sdxcyB4h" class="hero-cta primary" target="_blank" rel="noopener">
+                카카오톡 무료 상담
+              </a>
+              <a href="https://hviral.co.kr/" class="hero-cta secondary" target="_blank" rel="noopener">
+                홈페이지 둘러보기
+              </a>
+            </div>
+            <p class="hero-note">
+              * 상담 및 미팅은 사전 예약제로 진행되며,<br />
+              현재 업종·상권 상황을 공유해 주시면 그에 맞춰 디지털 마케팅 방향을 함께 정리합니다.
+            </p>
+          </div>
 
-  <!-- 오른쪽 숨쉬는 하늘/산/바다 이미지 영역 -->
-  <div class="hero-visual" aria-hidden="true"></div>
-</div>
+          <!-- 오른쪽 숨쉬는 하늘/산/바다 이미지 영역 -->
+          <div class="hero-visual" aria-hidden="true"></div>
+        </div>
 
         <!-- 사례 슬라이더 -->
         <h3 class="section-title">지역·업종별 디지털 마케팅 포트폴리오</h3>
@@ -737,7 +795,7 @@
       const track = document.querySelector(".case-track");
       if (!track) return;
 
-      // A 선택: 매 새로고침마다 순서 랜덤 섞기
+      // 새로고침마다 순서 랜덤 섞기
       const shuffled = cases
         .map((c) => ({ ...c, sort: Math.random() }))
         .sort((a, b) => a.sort - b.sort)
