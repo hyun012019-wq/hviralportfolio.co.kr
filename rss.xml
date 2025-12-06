@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>HVIRAL Portfolio</title>
+    <link>https://hviralportfolio.co.kr/</link>
+    <description>하비럴(HVIRAL) 실제 공간 기반 디지털 마케팅 포트폴리오.</description>
+    <language>ko</language>
+
+    <!-- 예시 1개 → 나중에 상세 페이지 생기면 추가 -->
+    <item>
+      <title>지역·업종 기반 디지털 마케팅 포트폴리오</title>
+      <link>https://hviralportfolio.co.kr/</link>
+      <description><![CDATA[
+        실제 상권 구조와 유입 흐름을 기준으로 정리한 디지털 마케팅 사례형 포트폴리오입니다.
+      ]]></description>
+      <guid isPermaLink="false">hviralportfolio-main-2025</guid>
+      <pubDate>Wed, 01 Jan 2025 09:00:00 +0900</pubDate>
+    </item>
+  </channel>
+</rss>
