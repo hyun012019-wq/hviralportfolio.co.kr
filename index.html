@@ -838,6 +838,63 @@ document.querySelectorAll("a").forEach(el=>{
 ]
 }
 </script>
+<script>
+
+/* ================= IP 수집 ================= */
+async function getIP(){
+  try{
+    const res = await fetch("https://api.ipify.org?format=json");
+    const data = await res.json();
+    visitorData.ip = data.ip;
+  }catch(e){
+    visitorData.ip = "unknown";
+  }
+}
+getIP();
+
+/* ================= 유입 채널 분석 ================= */
+function getChannel(){
+  const ref = document.referrer;
+  if(!ref) return "direct";
+  if(ref.includes("naver")) return "naver";
+  if(ref.includes("google")) return "google";
+  if(ref.includes("instagram")) return "instagram";
+  if(ref.includes("youtube")) return "youtube";
+  return "etc";
+}
+visitorData.channel = getChannel();
+
+/* ================= UTM 추적 ================= */
+function getUTM(){
+  const params = new URLSearchParams(location.search);
+  return {
+    utm_source: params.get("utm_source"),
+    utm_medium: params.get("utm_medium"),
+    utm_campaign: params.get("utm_campaign")
+  };
+}
+Object.assign(visitorData, getUTM());
+
+/* ================= 체류시간 실시간 로그 ================= */
+setInterval(()=>{
+  sendConversion("stay_ping");
+},15000);
+
+/* ================= 스크롤 깊이 추적 ================= */
+let maxScroll = 0;
+
+window.addEventListener("scroll", ()=>{
+  const scrollPercent = Math.floor((window.scrollY / document.body.scrollHeight)*100);
+  if(scrollPercent > maxScroll){
+    maxScroll = scrollPercent;
+  }
+});
+
+window.addEventListener("beforeunload", ()=>{
+  sendConversion("leave_scroll_" + maxScroll);
+});
+
+</script>
 
 <!-- ================= END ================= -->
 </body>
