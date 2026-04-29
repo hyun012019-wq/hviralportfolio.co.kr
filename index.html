@@ -895,7 +895,117 @@ window.addEventListener("beforeunload", ()=>{
 });
 
 </script>
+/* ================= HVIRAL CONVERSION SIGNAL PACK ================= */
 
+<style>
+.live-box{
+  position:fixed;
+  left:20px;
+  bottom:20px;
+  z-index:9999;
+  background:#fff;
+  border:1px solid #e2e8f0;
+  border-radius:14px;
+  padding:12px 16px;
+  font-size:13px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  text-align:left;
+  line-height:1.5;
+  transition:.3s;
+}
+.live-box b{
+  color:#7c3aed;
+}
+</style>
+
+<div class="live-box" id="liveBox">
+  확인 중입니다...
+</div>
+
+<script>
+
+/* ================= 기본 메시지 ================= */
+const baseMessages = [
+  "지금도 확인 중입니다",
+  "최근 문의가 이어지고 있습니다",
+  "조금 전 상담이 진행되었습니다",
+  "현재 상담 요청이 들어오고 있습니다",
+  "여러 채널에서 확인 중입니다"
+];
+
+/* ================= 상담 상태 ================= */
+function getConsultStatus(){
+  const hour = new Date().getHours();
+  return (hour >= 9 && hour <= 20)
+    ? "지금 상담 가능합니다"
+    : "상담 예약 가능합니다";
+}
+
+/* ================= 랜덤 메시지 ================= */
+function getRandomBase(){
+  return baseMessages[Math.floor(Math.random() * baseMessages.length)];
+}
+
+/* ================= 출력 ================= */
+function renderBox(msg){
+  document.getElementById("liveBox").innerHTML = `
+    ${msg}<br>
+    <b>${getConsultStatus()}</b>
+  `;
+}
+
+/* ================= 최초 출력 ================= */
+renderBox(getRandomBase());
+
+/* ================= 자연 변경 ================= */
+setInterval(()=>{
+  renderBox(getRandomBase());
+},8000);
+
+/* ================= 재방문 감지 ================= */
+if(localStorage.getItem("visit")){
+  setTimeout(()=>{
+    renderBox("다시 확인 중이시네요");
+  },3000);
+}
+localStorage.setItem("visit","1");
+
+/* ================= 체류시간 압박 ================= */
+setTimeout(()=>{
+  renderBox("확인하신 내용으로 상담 연결 가능합니다");
+},15000);
+
+/* ================= 유입 채널 분기 ================= */
+const ref = document.referrer;
+
+if(ref.includes("naver")){
+  renderBox("검색 후 확인 중이시네요");
+}
+if(ref.includes("instagram")){
+  renderBox("콘텐츠 보고 방문하셨네요");
+}
+if(ref.includes("youtube")){
+  renderBox("영상 보고 확인 중이시네요");
+}
+
+/* ================= 스크롤 기반 ================= */
+let scrollTriggered = false;
+
+window.addEventListener("scroll", ()=>{
+  if(!scrollTriggered && window.scrollY > 400){
+    scrollTriggered = true;
+    renderBox("필요한 내용 거의 확인하셨네요");
+  }
+});
+
+/* ================= 이탈 감지 ================= */
+document.addEventListener("mouseleave", (e)=>{
+  if(e.clientY < 0){
+    renderBox("나가기 전에 상담 가능 여부 확인해보세요");
+  }
+});
+
+</script>
 <!-- ================= END ================= -->
 </body>
 </html>
