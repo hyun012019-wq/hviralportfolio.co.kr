@@ -48,6 +48,7 @@
       overflow-x:hidden;
       line-height:1.65;
       text-align:center;
+      transition:filter .18s ease, background .35s ease;
     }
     a{text-decoration:none;color:inherit}
     button{font-family:inherit}
@@ -378,6 +379,76 @@
       gap:28px;flex-wrap:wrap;text-align:center;
     }
 
+    #stormCanvas{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      pointer-events:none;
+      z-index:998;
+      opacity:.55;
+    }
+    .storm-overlay{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:997;
+      background:
+        radial-gradient(circle at 30% 10%,rgba(37,99,235,.10),transparent 28%),
+        linear-gradient(180deg,rgba(2,6,23,.12),rgba(15,23,42,.08));
+      opacity:.45;
+      mix-blend-mode:multiply;
+      transition:opacity .35s ease, background .35s ease;
+    }
+    .lightning-flash{
+      position:fixed;
+      inset:0;
+      z-index:9997;
+      background:#fff;
+      pointer-events:none;
+      opacity:0;
+      transition:opacity .06s linear;
+    }
+    body.hviral-dark-mode{
+      background:
+        radial-gradient(circle at 8% 8%,rgba(37,99,235,.20),transparent 24%),
+        radial-gradient(circle at 90% 12%,rgba(124,58,237,.18),transparent 25%),
+        radial-gradient(circle at 55% 95%,rgba(6,182,212,.10),transparent 27%),
+        linear-gradient(180deg,#020617,#0f172a);
+      color:#e5e7eb;
+    }
+    body.hviral-dark-mode header{
+      background:rgba(2,6,23,.62);
+      border-bottom:1px solid rgba(255,255,255,.10);
+    }
+    body.hviral-dark-mode .hero-badge,
+    body.hviral-dark-mode .stat,
+    body.hviral-dark-mode .service-card,
+    body.hviral-dark-mode .step,
+    body.hviral-dark-mode .mobile-panel,
+    body.hviral-dark-mode .live-box{
+      background:rgba(15,23,42,.82);
+      color:#e5e7eb;
+      border-color:rgba(255,255,255,.12);
+    }
+    body.hviral-dark-mode .hero-desc,
+    body.hviral-dark-mode .section p.lead,
+    body.hviral-dark-mode .service-card p,
+    body.hviral-dark-mode .step p,
+    body.hviral-dark-mode .stat small{
+      color:#cbd5e1;
+    }
+    body.hviral-storm-strong .storm-overlay{
+      opacity:.72;
+      background:
+        radial-gradient(circle at 25% 8%,rgba(37,99,235,.22),transparent 30%),
+        linear-gradient(180deg,rgba(2,6,23,.28),rgba(15,23,42,.20));
+    }
+    body.hviral-flash{
+      filter:brightness(1.35) contrast(1.04);
+    }
+
     @media(max-width:900px){
       .cursor-glow{display:none}
       .nav-menu,.nav-cta{display:none}
@@ -389,12 +460,16 @@
       .hero h1{font-size:42px}
       .seo-image{padding:0 20px 58px}
       .seo-image img{border-radius:26px}
+      #stormCanvas{opacity:.42}
     }
   </style>
 </head>
 
 <body>
 <div class="cursor-glow" id="cursorGlow"></div>
+<div class="storm-overlay" id="stormOverlay"></div>
+<canvas id="stormCanvas"></canvas>
+<div class="lightning-flash" id="lightningFlash"></div>
 
 <header>
   <div class="nav">
@@ -640,7 +715,6 @@
   "sameAs":["https://hviral.co.kr/"]
 }
 </script>
-<!-- ================= HVIRAL FULL TRACKING ADDON ================= -->
 
 <style>
 .fixed-cta{
@@ -681,12 +755,10 @@
 }
 </style>
 
-<!-- 하단 CTA -->
 <a href="https://open.kakao.com/o/sdxcyB4h" target="_blank" class="fixed-cta" onclick="trackClick('cta_kakao')">
 카톡 상담
 </a>
 
-<!-- 팝업 -->
 <div class="popup-wrap" id="popup">
   <div class="popup">
     <h3>지금 상담 가능</h3>
@@ -699,8 +771,6 @@
 </div>
 
 <script>
-
-/* ================= 방문 식별 ================= */
 function getVisitorId(){
   let id = localStorage.getItem("visitor_id");
   if(!id){
@@ -710,7 +780,6 @@ function getVisitorId(){
   return id;
 }
 
-/* ================= 기본 데이터 ================= */
 const visitorData = {
   id: getVisitorId(),
   ua: navigator.userAgent,
@@ -720,15 +789,12 @@ const visitorData = {
   time: new Date().toISOString()
 };
 
-/* ================= 체류시간 ================= */
 let startTime = Date.now();
 
-/* ================= 클릭 추적 ================= */
 function trackClick(type){
   console.log("CLICK:", type, visitorData);
 }
 
-/* ================= 전환 로그 ================= */
 function sendConversion(type){
   const stay = Math.floor((Date.now()-startTime)/1000);
 
@@ -740,7 +806,6 @@ function sendConversion(type){
 
   console.log("CONVERSION:", payload);
 
-  // 서버 연결시 사용
   /*
   fetch("https://your-server.com/track",{
     method:"POST",
@@ -750,7 +815,6 @@ function sendConversion(type){
   */
 }
 
-/* ================= 팝업 제어 ================= */
 function showPopup(){
   document.getElementById("popup").style.display="flex";
 }
@@ -758,54 +822,43 @@ function closePopup(){
   document.getElementById("popup").style.display="none";
 }
 
-/* ================= 트리거 ================= */
-
-// 1. 시간
 setTimeout(showPopup,4000);
 
-// 2. 스크롤
-let scrollTriggered=false;
+let popupScrollTriggered=false;
 window.addEventListener("scroll",()=>{
-  if(!scrollTriggered && window.scrollY>500){
-    scrollTriggered=true;
+  if(!popupScrollTriggered && window.scrollY>500){
+    popupScrollTriggered=true;
     showPopup();
   }
 });
 
-// 3. 이탈 감지
 document.addEventListener("mouseleave",(e)=>{
   if(e.clientY<0){
     showPopup();
   }
 });
 
-// 4. 재방문
 if(localStorage.getItem("visit")){
   setTimeout(showPopup,2000);
 }
 localStorage.setItem("visit","1");
 
-/* ================= 페이지 종료 ================= */
 window.addEventListener("beforeunload",()=>{
   sendConversion("leave");
 });
 
-/* ================= 전체 클릭 감지 ================= */
 document.querySelectorAll("a").forEach(el=>{
   el.addEventListener("click",()=>{
     sendConversion("click");
   });
 });
-
 </script>
 
-<!-- 숨김 키워드 -->
 <div style="display:none">
 하비럴 하비럴마케팅 하비럴광고 홈페이지제작 SEO 블로그 플레이스 SNS 광고
 하비럴 하비럴마케팅 하비럴광고 홈페이지제작 SEO 블로그 플레이스 SNS 광고
 </div>
 
-<!-- FAQ (SEO 강화) -->
 <section style="padding:60px 20px;text-align:center">
 <h2>자주 묻는 질문</h2>
 <p>하비럴 마케팅은 무엇인가요?</p>
@@ -838,9 +891,8 @@ document.querySelectorAll("a").forEach(el=>{
 ]
 }
 </script>
-<script>
 
-/* ================= IP 수집 ================= */
+<script>
 async function getIP(){
   try{
     const res = await fetch("https://api.ipify.org?format=json");
@@ -852,7 +904,6 @@ async function getIP(){
 }
 getIP();
 
-/* ================= 유입 채널 분석 ================= */
 function getChannel(){
   const ref = document.referrer;
   if(!ref) return "direct";
@@ -864,7 +915,6 @@ function getChannel(){
 }
 visitorData.channel = getChannel();
 
-/* ================= UTM 추적 ================= */
 function getUTM(){
   const params = new URLSearchParams(location.search);
   return {
@@ -875,12 +925,10 @@ function getUTM(){
 }
 Object.assign(visitorData, getUTM());
 
-/* ================= 체류시간 실시간 로그 ================= */
 setInterval(()=>{
   sendConversion("stay_ping");
 },15000);
 
-/* ================= 스크롤 깊이 추적 ================= */
 let maxScroll = 0;
 
 window.addEventListener("scroll", ()=>{
@@ -893,9 +941,7 @@ window.addEventListener("scroll", ()=>{
 window.addEventListener("beforeunload", ()=>{
   sendConversion("leave_scroll_" + maxScroll);
 });
-
 </script>
-/* ================= HVIRAL CONVERSION SIGNAL PACK ================= */
 
 <style>
 .live-box{
@@ -923,8 +969,6 @@ window.addEventListener("beforeunload", ()=>{
 </div>
 
 <script>
-
-/* ================= 기본 메시지 ================= */
 const baseMessages = [
   "지금도 확인 중입니다",
   "최근 문의가 이어지고 있습니다",
@@ -933,7 +977,6 @@ const baseMessages = [
   "여러 채널에서 확인 중입니다"
 ];
 
-/* ================= 상담 상태 ================= */
 function getConsultStatus(){
   const hour = new Date().getHours();
   return (hour >= 9 && hour <= 20)
@@ -941,12 +984,10 @@ function getConsultStatus(){
     : "상담 예약 가능합니다";
 }
 
-/* ================= 랜덤 메시지 ================= */
 function getRandomBase(){
   return baseMessages[Math.floor(Math.random() * baseMessages.length)];
 }
 
-/* ================= 출력 ================= */
 function renderBox(msg){
   document.getElementById("liveBox").innerHTML = `
     ${msg}<br>
@@ -954,15 +995,12 @@ function renderBox(msg){
   `;
 }
 
-/* ================= 최초 출력 ================= */
 renderBox(getRandomBase());
 
-/* ================= 자연 변경 ================= */
 setInterval(()=>{
   renderBox(getRandomBase());
 },8000);
 
-/* ================= 재방문 감지 ================= */
 if(localStorage.getItem("visit")){
   setTimeout(()=>{
     renderBox("다시 확인 중이시네요");
@@ -970,179 +1008,326 @@ if(localStorage.getItem("visit")){
 }
 localStorage.setItem("visit","1");
 
-/* ================= 체류시간 압박 ================= */
 setTimeout(()=>{
   renderBox("확인하신 내용으로 상담 연결 가능합니다");
 },15000);
 
-/* ================= 유입 채널 분기 ================= */
-const ref = document.referrer;
+const liveRef = document.referrer;
 
-if(ref.includes("naver")){
+if(liveRef.includes("naver")){
   renderBox("검색 후 확인 중이시네요");
 }
-if(ref.includes("instagram")){
+if(liveRef.includes("instagram")){
   renderBox("콘텐츠 보고 방문하셨네요");
 }
-if(ref.includes("youtube")){
+if(liveRef.includes("youtube")){
   renderBox("영상 보고 확인 중이시네요");
 }
 
-/* ================= 스크롤 기반 ================= */
-let scrollTriggered = false;
+let liveScrollTriggered = false;
 
 window.addEventListener("scroll", ()=>{
-  if(!scrollTriggered && window.scrollY > 400){
-    scrollTriggered = true;
+  if(!liveScrollTriggered && window.scrollY > 400){
+    liveScrollTriggered = true;
     renderBox("필요한 내용 거의 확인하셨네요");
   }
 });
 
-/* ================= 이탈 감지 ================= */
 document.addEventListener("mouseleave", (e)=>{
   if(e.clientY < 0){
     renderBox("나가기 전에 상담 가능 여부 확인해보세요");
   }
 });
-
 </script>
-<!-- ================= RAIN EFFECT ================= -->
-
-<canvas id="rainCanvas"></canvas>
-
-<style>
-#rainCanvas{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  z-index:0; /* 배경 뒤로 */
-  opacity:.25; /* 너무 튀지 않게 */
-}
-</style>
 
 <script>
-const canvas = document.getElementById("rainCanvas");
-const ctx = canvas.getContext("2d");
+(function(){
+  const canvas = document.getElementById("stormCanvas");
+  const ctx = canvas.getContext("2d");
+  const flash = document.getElementById("lightningFlash");
+  const overlay = document.getElementById("stormOverlay");
 
-let width, height;
-let drops = [];
+  let width = 0;
+  let height = 0;
+  let rain = [];
+  let splashes = [];
+  let lightningBolts = [];
+  let wind = 1.4;
+  let targetWind = 1.4;
+  let stormPower = 0.45;
+  let targetStormPower = 0.45;
+  let lastMouseX = null;
+  let lastMouseMove = Date.now();
+  let scrollPower = 0;
+  let darkMode = false;
 
-function resize(){
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
-
-/* 빗방울 생성 */
-function createDrops(){
-  drops = [];
-  for(let i=0;i<120;i++){
-    drops.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      length: Math.random() * 20 + 10,
-      speed: Math.random() * 4 + 4
-    });
+  function setDarkModeBySystem(){
+    darkMode = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.body.classList.toggle("hviral-dark-mode", darkMode);
+    overlay.style.opacity = darkMode ? ".62" : ".45";
   }
-}
-createDrops();
 
-/* 애니메이션 */
-function draw(){
-  ctx.clearRect(0,0,width,height);
+  setDarkModeBySystem();
 
-  ctx.strokeStyle = "rgba(100,150,255,0.3)";
-  ctx.lineWidth = 1;
-
-  for(let i=0;i<drops.length;i++){
-    const d = drops[i];
-
-    ctx.beginPath();
-    ctx.moveTo(d.x, d.y);
-    ctx.lineTo(d.x, d.y + d.length);
-    ctx.stroke();
-
-    d.y += d.speed;
-
-    if(d.y > height){
-      d.y = -20;
-      d.x = Math.random() * width;
+  if(window.matchMedia){
+    const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    if(darkQuery.addEventListener){
+      darkQuery.addEventListener("change", setDarkModeBySystem);
+    }else if(darkQuery.addListener){
+      darkQuery.addListener(setDarkModeBySystem);
     }
   }
 
-  requestAnimationFrame(draw);
-}
-
-draw();
-</script>
-<canvas id="rainCanvas"></canvas>
-<style>
-#rainCanvas{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  z-index:9998;
-  opacity:.5;
-}
-</style>
-<script>
-const canvas = document.getElementById("rainCanvas");
-const ctx = canvas.getContext("2d");
-
-let width, height;
-let drops = [];
-
-function resize(){
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
-
-function createDrops(){
-  drops = [];
-  for(let i=0;i<200;i++){
-    drops.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      length: Math.random() * 20 + 10,
-      speed: Math.random() * 5 + 5
-    });
+  function resize(){
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    createRain();
   }
-}
-createDrops();
 
-function draw(){
-  ctx.clearRect(0,0,width,height);
-
-  ctx.strokeStyle = "rgba(180,200,255,0.6)";
-  ctx.lineWidth = 1.2;
-
-  for(let d of drops){
-    ctx.beginPath();
-    ctx.moveTo(d.x, d.y);
-    ctx.lineTo(d.x, d.y + d.length);
-    ctx.stroke();
-
-    d.y += d.speed;
-
-    if(d.y > height){
-      d.y = -20;
-      d.x = Math.random() * width;
+  function createRain(){
+    const baseCount = Math.floor(150 + targetStormPower * 170);
+    rain = [];
+    for(let i=0;i<baseCount;i++){
+      rain.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        len: Math.random() * 18 + 12 + targetStormPower * 8,
+        speed: Math.random() * 5 + 5 + targetStormPower * 5,
+        weight: Math.random() * 1.2 + .45,
+        layer: Math.random() > .68 ? 1.35 : 1
+      });
     }
   }
 
-  requestAnimationFrame(draw);
-}
+  resize();
+  window.addEventListener("resize", resize);
 
-draw();
+  function addSplash(x,y,power){
+    if(splashes.length > 220) return;
+    const count = Math.floor(2 + power * 5);
+    for(let i=0;i<count;i++){
+      splashes.push({
+        x:x,
+        y:y,
+        vx:(Math.random()-.5) * (1.6 + power * 2.4),
+        vy:-(Math.random() * 2.2 + power * 2.8),
+        life:Math.floor(14 + power * 14),
+        maxLife:Math.floor(14 + power * 14),
+        r:Math.random() * 1.7 + .7
+      });
+    }
+  }
+
+  function makeBolt(startX, startY, branch, depth){
+    const points = [];
+    let x = startX;
+    let y = startY;
+    points.push({x,y});
+
+    const maxY = height * (0.45 + Math.random() * 0.45);
+    while(y < maxY){
+      x += (Math.random() - .5) * (42 + stormPower * 46);
+      y += Math.random() * 34 + 16;
+      points.push({x,y});
+
+      if(branch && depth < 3 && Math.random() < .23){
+        lightningBolts.push({
+          points: makeBolt(x, y, true, depth + 1),
+          life: 8,
+          maxLife: 8,
+          width: Math.max(1, 2.4 - depth * .55),
+          branch:true
+        });
+      }
+    }
+    return points;
+  }
+
+  function triggerLightning(force){
+    if(!force && Math.random() > (.18 + stormPower * .22)) return;
+
+    const startX = Math.random() * width;
+    const points = makeBolt(startX, 0, true, 0);
+
+    lightningBolts.push({
+      points,
+      life: 10,
+      maxLife: 10,
+      width: 2.6 + stormPower * 1.6,
+      branch:false
+    });
+
+    flash.style.opacity = darkMode ? ".72" : ".88";
+    document.body.classList.add("hviral-flash");
+
+    setTimeout(()=>{
+      flash.style.opacity = "0";
+      document.body.classList.remove("hviral-flash");
+    },75);
+
+    setTimeout(()=>{
+      flash.style.opacity = darkMode ? ".38" : ".45";
+      document.body.classList.add("hviral-flash");
+      setTimeout(()=>{
+        flash.style.opacity = "0";
+        document.body.classList.remove("hviral-flash");
+      },55);
+    },145);
+  }
+
+  function randomLightningLoop(){
+    const delay = Math.random() * 6500 + Math.max(1600, 6200 - stormPower * 3200);
+    setTimeout(()=>{
+      triggerLightning(false);
+      randomLightningLoop();
+    }, delay);
+  }
+  randomLightningLoop();
+
+  window.addEventListener("mousemove", function(e){
+    if(lastMouseX !== null){
+      const dx = e.clientX - lastMouseX;
+      targetWind += dx * .018;
+      if(targetWind > 7) targetWind = 7;
+      if(targetWind < -7) targetWind = -7;
+    }
+    lastMouseX = e.clientX;
+    lastMouseMove = Date.now();
+  });
+
+  window.addEventListener("scroll", function(){
+    const max = Math.max(1, document.body.scrollHeight - window.innerHeight);
+    scrollPower = Math.min(1, window.scrollY / max);
+    targetStormPower = .45 + scrollPower * .55;
+    document.body.classList.toggle("hviral-storm-strong", scrollPower > .46);
+
+    if(scrollPower > .72 && Math.random() < .05){
+      triggerLightning(true);
+    }
+  });
+
+  document.querySelectorAll("a,button").forEach(function(el){
+    el.addEventListener("mouseenter", function(){
+      targetStormPower = Math.min(1, targetStormPower + .18);
+      if(Math.random() < .18) triggerLightning(true);
+    });
+  });
+
+  function drawRain(){
+    ctx.clearRect(0,0,width,height);
+
+    if(Date.now() - lastMouseMove > 1200){
+      targetWind *= .985;
+    }
+
+    wind += (targetWind - wind) * .025;
+    stormPower += (targetStormPower - stormPower) * .018;
+
+    const desiredCount = Math.floor(150 + stormPower * 170);
+    while(rain.length < desiredCount){
+      rain.push({
+        x: Math.random() * width,
+        y: -20,
+        len: Math.random() * 18 + 12 + stormPower * 8,
+        speed: Math.random() * 5 + 5 + stormPower * 5,
+        weight: Math.random() * 1.2 + .45,
+        layer: Math.random() > .68 ? 1.35 : 1
+      });
+    }
+    while(rain.length > desiredCount){
+      rain.pop();
+    }
+
+    const rainAlpha = darkMode ? .72 : .58;
+    ctx.strokeStyle = "rgba(180,205,255," + rainAlpha + ")";
+    ctx.lineCap = "round";
+
+    for(const d of rain){
+      const angle = wind * d.layer;
+      ctx.lineWidth = d.weight * d.layer;
+
+      ctx.beginPath();
+      ctx.moveTo(d.x, d.y);
+      ctx.lineTo(d.x + angle, d.y + d.len);
+      ctx.stroke();
+
+      d.x += angle * .22;
+      d.y += d.speed * d.layer;
+
+      if(d.y > height){
+        if(Math.random() < .32 + stormPower * .26){
+          addSplash(d.x, height - 2, stormPower);
+        }
+        d.y = -30;
+        d.x = Math.random() * width - wind * 16;
+        d.len = Math.random() * 18 + 12 + stormPower * 8;
+        d.speed = Math.random() * 5 + 5 + stormPower * 5;
+      }
+
+      if(d.x > width + 80) d.x = -60;
+      if(d.x < -80) d.x = width + 60;
+    }
+
+    for(let i=splashes.length-1;i>=0;i--){
+      const s = splashes[i];
+      const alpha = Math.max(0, s.life / s.maxLife);
+      ctx.fillStyle = "rgba(200,225,255," + (alpha * .75) + ")";
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+
+      s.x += s.vx + wind * .025;
+      s.y += s.vy;
+      s.vy += .18;
+      s.life--;
+
+      if(s.life <= 0){
+        splashes.splice(i,1);
+      }
+    }
+
+    for(let i=lightningBolts.length-1;i>=0;i--){
+      const bolt = lightningBolts[i];
+      const alpha = Math.max(0, bolt.life / bolt.maxLife);
+
+      ctx.save();
+      ctx.shadowColor = "rgba(255,255,255," + alpha + ")";
+      ctx.shadowBlur = bolt.branch ? 8 : 20;
+      ctx.strokeStyle = "rgba(255,255,255," + alpha + ")";
+      ctx.lineWidth = bolt.width;
+      ctx.lineJoin = "round";
+      ctx.lineCap = "round";
+      ctx.beginPath();
+
+      for(let j=0;j<bolt.points.length;j++){
+        const p = bolt.points[j];
+        if(j===0) ctx.moveTo(p.x,p.y);
+        else ctx.lineTo(p.x,p.y);
+      }
+      ctx.stroke();
+
+      ctx.strokeStyle = "rgba(147,197,253," + (alpha * .75) + ")";
+      ctx.lineWidth = Math.max(1, bolt.width * .42);
+      ctx.stroke();
+      ctx.restore();
+
+      bolt.life--;
+      if(bolt.life <= 0){
+        lightningBolts.splice(i,1);
+      }
+    }
+
+    const brightness = 1 + Math.random() * (.015 + stormPower * .018);
+    if(!document.body.classList.contains("hviral-flash")){
+      document.body.style.filter = "brightness(" + brightness + ")";
+    }
+
+    requestAnimationFrame(drawRain);
+  }
+
+  drawRain();
+})();
 </script>
+
 </body>
 </html>
