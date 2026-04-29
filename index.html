@@ -49,6 +49,7 @@
       line-height:1.65;
       text-align:center;
       transition:filter .18s ease, background .35s ease;
+      padding-bottom:110px;
     }
     a{text-decoration:none;color:inherit}
     button{font-family:inherit}
@@ -72,10 +73,17 @@
     }
 
     header{
-      position:fixed;top:0;left:0;width:100%;z-index:1000;
-      background:rgba(255,255,255,.72);
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000000;
+      background:rgba(255,255,255,.82);
       backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
       border-bottom:1px solid rgba(15,23,42,.08);
+      transform:translateZ(0);
+      will-change:transform;
     }
     .nav{
       max-width:1200px;margin:0 auto;height:72px;padding:0 20px;
@@ -116,7 +124,7 @@
     }
     .hamburger span{width:20px;height:2px;background:#0f172a;border-radius:999px}
     .mobile-panel{
-      position:fixed;top:72px;right:16px;left:16px;z-index:999;
+      position:fixed;top:72px;right:16px;left:16px;z-index:999999;
       background:rgba(255,255,255,.96);backdrop-filter:blur(18px);
       border:1px solid #e2e8f0;border-radius:24px;padding:18px;
       box-shadow:0 24px 80px rgba(15,23,42,.18);display:none;text-align:center;
@@ -373,6 +381,8 @@
 
     footer{
       padding:34px 20px;background:#020617;color:#94a3b8;font-size:12px;text-align:center;
+      position:relative;
+      z-index:2;
     }
     .foot{
       max-width:1200px;margin:0 auto;display:flex;justify-content:center;align-items:center;
@@ -386,14 +396,14 @@
       width:100%;
       height:100%;
       pointer-events:none;
-      z-index:998;
+      z-index:10;
       opacity:.55;
     }
     .storm-overlay{
       position:fixed;
       inset:0;
       pointer-events:none;
-      z-index:997;
+      z-index:9;
       background:
         radial-gradient(circle at 30% 10%,rgba(37,99,235,.10),transparent 28%),
         linear-gradient(180deg,rgba(2,6,23,.12),rgba(15,23,42,.08));
@@ -404,7 +414,7 @@
     .lightning-flash{
       position:fixed;
       inset:0;
-      z-index:9997;
+      z-index:9998;
       background:#fff;
       pointer-events:none;
       opacity:0;
@@ -419,7 +429,7 @@
       color:#e5e7eb;
     }
     body.hviral-dark-mode header{
-      background:rgba(2,6,23,.62);
+      background:rgba(2,6,23,.78);
       border-bottom:1px solid rgba(255,255,255,.10);
     }
     body.hviral-dark-mode .hero-badge,
@@ -428,7 +438,7 @@
     body.hviral-dark-mode .step,
     body.hviral-dark-mode .mobile-panel,
     body.hviral-dark-mode .live-box{
-      background:rgba(15,23,42,.82);
+      background:rgba(15,23,42,.88);
       color:#e5e7eb;
       border-color:rgba(255,255,255,.12);
     }
@@ -449,6 +459,79 @@
       filter:brightness(1.35) contrast(1.04);
     }
 
+    .fixed-cta{
+      position:fixed;
+      right:max(14px, env(safe-area-inset-right));
+      bottom:calc(18px + env(safe-area-inset-bottom));
+      z-index:1000001;
+      padding:16px 22px;
+      border-radius:999px;
+      background:linear-gradient(90deg,#2563eb,#7c3aed,#ec4899);
+      color:#fff;
+      font-weight:900;
+      font-size:17px;
+      box-shadow:0 15px 40px rgba(0,0,0,.24);
+      transform:translateZ(0);
+      will-change:transform;
+    }
+    .fixed-cta.pulse{
+      animation:ctaPulse 1.4s ease-in-out infinite;
+    }
+    @keyframes ctaPulse{
+      0%,100%{transform:translateZ(0) scale(1)}
+      50%{transform:translateZ(0) scale(1.035)}
+    }
+    .live-box{
+      position:fixed;
+      left:max(14px, env(safe-area-inset-left));
+      bottom:calc(18px + env(safe-area-inset-bottom));
+      z-index:1000001;
+      background:rgba(255,255,255,.96);
+      border:1px solid #e2e8f0;
+      border-radius:16px;
+      padding:13px 16px;
+      font-size:13px;
+      box-shadow:0 14px 40px rgba(0,0,0,.12);
+      text-align:left;
+      line-height:1.48;
+      transition:.25s;
+      max-width:330px;
+      transform:translateZ(0);
+      will-change:transform;
+    }
+    .live-box b{
+      color:#7c3aed;
+      font-size:14px;
+    }
+    .live-box strong{
+      color:#0f172a;
+      font-weight:900;
+    }
+    .popup-wrap{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.6);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:1000002;
+    }
+    .popup{
+      background:#fff;
+      padding:30px;
+      border-radius:20px;
+      max-width:400px;
+      text-align:center;
+    }
+    .popup button{
+      margin-top:10px;
+      padding:10px 14px;
+      border:0;
+      border-radius:8px;
+      background:#111;
+      color:#fff;
+    }
+
     @media(max-width:900px){
       .cursor-glow{display:none}
       .nav-menu,.nav-cta{display:none}
@@ -461,6 +544,34 @@
       .seo-image{padding:0 20px 58px}
       .seo-image img{border-radius:26px}
       #stormCanvas{opacity:.42}
+      .fixed-cta{
+        right:14px;
+        bottom:calc(16px + env(safe-area-inset-bottom));
+        padding:15px 20px;
+        font-size:16px;
+        min-width:142px;
+        text-align:center;
+      }
+      .live-box{
+        left:14px;
+        bottom:calc(16px + env(safe-area-inset-bottom));
+        max-width:calc(100vw - 185px);
+        padding:12px 13px;
+        font-size:12px;
+      }
+      .live-box b{font-size:13px}
+      body{padding-bottom:116px}
+    }
+
+    @media(max-width:420px){
+      .fixed-cta{
+        min-width:132px;
+        padding:14px 17px;
+      }
+      .live-box{
+        max-width:calc(100vw - 170px);
+        border-radius:14px;
+      }
     }
   </style>
 </head>
@@ -669,6 +780,25 @@
   </div>
 </footer>
 
+<a href="https://open.kakao.com/o/sdxcyB4h" target="_blank" class="fixed-cta pulse" onclick="trackClick('fixed_kakao')" rel="noopener">
+카톡 상담
+</a>
+
+<div class="live-box" id="liveBox">
+  확인 중입니다...
+</div>
+
+<div class="popup-wrap" id="popup">
+  <div class="popup">
+    <h3>지금 상담 가능</h3>
+    <p>홈페이지·SEO·광고 방향 바로 확인하세요</p>
+    <a href="https://open.kakao.com/o/sdxcyB4h" target="_blank" onclick="trackClick('popup_kakao')" rel="noopener">
+      <button>카톡 문의</button>
+    </a>
+    <button onclick="closePopup()">닫기</button>
+  </div>
+</div>
+
 <script>
   const hamburger = document.getElementById("hamburger");
   const mobilePanel = document.getElementById("mobilePanel");
@@ -716,60 +846,6 @@
 }
 </script>
 
-<style>
-.fixed-cta{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  z-index:9999;
-  padding:16px 22px;
-  border-radius:999px;
-  background:linear-gradient(90deg,#2563eb,#7c3aed,#ec4899);
-  color:#fff;
-  font-weight:900;
-  box-shadow:0 15px 40px rgba(0,0,0,.2);
-}
-.popup-wrap{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:99999;
-}
-.popup{
-  background:#fff;
-  padding:30px;
-  border-radius:20px;
-  max-width:400px;
-  text-align:center;
-}
-.popup button{
-  margin-top:10px;
-  padding:10px 14px;
-  border:0;
-  border-radius:8px;
-  background:#111;
-  color:#fff;
-}
-</style>
-
-<a href="https://open.kakao.com/o/sdxcyB4h" target="_blank" class="fixed-cta" onclick="trackClick('cta_kakao')">
-카톡 상담
-</a>
-
-<div class="popup-wrap" id="popup">
-  <div class="popup">
-    <h3>지금 상담 가능</h3>
-    <p>홈페이지·SEO·광고 방향 바로 확인하세요</p>
-    <a href="https://open.kakao.com/o/sdxcyB4h" target="_blank" onclick="trackClick('popup_kakao')">
-      <button>카톡 문의</button>
-    </a>
-    <button onclick="closePopup()">닫기</button>
-  </div>
-</div>
-
 <script>
 function getVisitorId(){
   let id = localStorage.getItem("visitor_id");
@@ -790,22 +866,25 @@ const visitorData = {
 };
 
 let startTime = Date.now();
+let maxScroll = 0;
+let visitorScore = 0;
 
 function trackClick(type){
+  visitorScore += 20;
   console.log("CLICK:", type, visitorData);
+  renderBoxByScore("click");
 }
 
 function sendConversion(type){
   const stay = Math.floor((Date.now()-startTime)/1000);
-
   const payload = {
     ...visitorData,
     event: type,
-    stay_time: stay
+    stay_time: stay,
+    max_scroll:maxScroll,
+    visitor_score:visitorScore
   };
-
   console.log("CONVERSION:", payload);
-
   /*
   fetch("https://your-server.com/track",{
     method:"POST",
@@ -822,24 +901,157 @@ function closePopup(){
   document.getElementById("popup").style.display="none";
 }
 
-setTimeout(showPopup,4000);
+function getChannel(){
+  const ref = document.referrer;
+  if(!ref) return "direct";
+  if(ref.includes("naver")) return "naver";
+  if(ref.includes("google")) return "google";
+  if(ref.includes("instagram")) return "instagram";
+  if(ref.includes("youtube")) return "youtube";
+  return "etc";
+}
+visitorData.channel = getChannel();
+
+function getUTM(){
+  const params = new URLSearchParams(location.search);
+  return {
+    utm_source: params.get("utm_source"),
+    utm_medium: params.get("utm_medium"),
+    utm_campaign: params.get("utm_campaign")
+  };
+}
+Object.assign(visitorData, getUTM());
+
+async function getIP(){
+  try{
+    const res = await fetch("https://api.ipify.org?format=json");
+    const data = await res.json();
+    visitorData.ip = data.ip;
+  }catch(e){
+    visitorData.ip = "unknown";
+  }
+}
+getIP();
+
+const liveMessages = {
+  direct:[
+    ["처음 확인 중이시라면", "필요한 범위만 먼저 잡아드릴 수 있습니다"],
+    ["지금 페이지를 보고 계신다면", "제작보다 방향 정리가 먼저입니다"],
+    ["고민이 길어질수록", "광고비보다 구조 손실이 커질 수 있습니다"]
+  ],
+  naver:[
+    ["검색해서 들어오셨다면", "이미 비교 단계일 가능성이 높습니다"],
+    ["하비럴을 확인 중이시라면", "업종별 방향부터 먼저 보시면 됩니다"],
+    ["지금 필요한 건 결정이 아니라", "가능 범위 확인입니다"]
+  ],
+  google:[
+    ["자료를 비교 중이시라면", "페이지·광고·검색 흐름을 같이 보셔야 합니다"],
+    ["단순 제작 견적보다", "문의 흐름이 먼저입니다"],
+    ["지금 확인한 정보로", "상담 방향을 바로 잡을 수 있습니다"]
+  ],
+  instagram:[
+    ["콘텐츠에서 넘어오셨다면", "보이는 화면보다 전환 흐름이 중요합니다"],
+    ["SNS만으로 부족했다면", "홈페이지와 검색 연결을 같이 봐야 합니다"],
+    ["관심이 생긴 지금", "필요 범위만 먼저 확인해보세요"]
+  ],
+  youtube:[
+    ["영상 보고 오셨다면", "메시지보다 연결 구조가 중요합니다"],
+    ["콘텐츠 이후 문의 흐름까지", "같이 설계해야 합니다"],
+    ["지금 단계에서는", "상담 가능 범위 확인이 먼저입니다"]
+  ],
+  etc:[
+    ["여러 채널에서 확인 중이시라면", "흩어진 마케팅을 하나로 정리할 수 있습니다"],
+    ["지금 보고 계신 내용은", "제작과 운영 범위를 나누기 위한 기준입니다"],
+    ["방문만 하고 나가면", "현재 문제는 그대로 남을 수 있습니다"]
+  ]
+};
+
+function getConsultStatus(){
+  const hour = new Date().getHours();
+  return (hour >= 9 && hour <= 20)
+    ? "상담 연결 가능 시간입니다"
+    : "상담 예약 가능합니다";
+}
+
+function renderLiveBox(title, desc){
+  const liveBox = document.getElementById("liveBox");
+  liveBox.innerHTML = `
+    <strong>${title}</strong><br>
+    ${desc}<br>
+    <b>${getConsultStatus()}</b>
+  `;
+}
+
+function renderBoxByScore(reason){
+  const channel = visitorData.channel || "direct";
+  let pool = liveMessages[channel] || liveMessages.etc;
+
+  if(visitorScore >= 70){
+    renderLiveBox("이미 충분히 확인하셨습니다", "이제 견적보다 가능 범위 확인이 빠릅니다");
+    return;
+  }
+  if(reason === "exit"){
+    renderLiveBox("나가기 전에 한 번만 확인하세요", "지금 필요한 범위만 잡아도 시행착오를 줄일 수 있습니다");
+    return;
+  }
+  if(reason === "scrollDeep"){
+    renderLiveBox("여기까지 보셨다면", "관심보다 필요성이 더 큰 상태일 수 있습니다");
+    return;
+  }
+  if(reason === "click"){
+    renderLiveBox("상담 버튼을 확인하셨습니다", "바로 문의하지 않아도 범위 확인부터 가능합니다");
+    return;
+  }
+
+  const pick = pool[Math.floor(Math.random()*pool.length)];
+  renderLiveBox(pick[0], pick[1]);
+}
+
+renderBoxByScore("init");
+
+setInterval(()=>{
+  visitorScore += 3;
+  renderBoxByScore("time");
+},9000);
+
+setTimeout(()=>{
+  visitorScore += 8;
+  renderLiveBox("지금 바로 결정하지 않아도 됩니다", "홈페이지·SEO·광고 중 필요한 것만 먼저 확인하세요");
+},15000);
+
+setTimeout(showPopup,9000);
 
 let popupScrollTriggered=false;
 window.addEventListener("scroll",()=>{
-  if(!popupScrollTriggered && window.scrollY>500){
+  const max = Math.max(1, document.body.scrollHeight - window.innerHeight);
+  const scrollPercent = Math.floor((window.scrollY / max)*100);
+  if(scrollPercent > maxScroll){
+    maxScroll = scrollPercent;
+  }
+
+  if(scrollPercent > 35){
+    visitorScore += 1;
+  }
+
+  if(!popupScrollTriggered && window.scrollY>700){
     popupScrollTriggered=true;
-    showPopup();
+    visitorScore += 12;
+    renderBoxByScore("scrollDeep");
   }
 });
 
 document.addEventListener("mouseleave",(e)=>{
   if(e.clientY<0){
-    showPopup();
+    visitorScore += 15;
+    renderBoxByScore("exit");
   }
 });
 
 if(localStorage.getItem("visit")){
-  setTimeout(showPopup,2000);
+  setTimeout(()=>{
+    visitorScore += 20;
+    renderLiveBox("다시 확인 중이시네요", "이미 필요성을 느낀 항목부터 정리해드릴 수 있습니다");
+  },2500);
 }
 localStorage.setItem("visit","1");
 
@@ -852,6 +1064,10 @@ document.querySelectorAll("a").forEach(el=>{
     sendConversion("click");
   });
 });
+
+setInterval(()=>{
+  sendConversion("stay_ping");
+},15000);
 </script>
 
 <div style="display:none">
@@ -890,154 +1106,6 @@ document.querySelectorAll("a").forEach(el=>{
 }
 ]
 }
-</script>
-
-<script>
-async function getIP(){
-  try{
-    const res = await fetch("https://api.ipify.org?format=json");
-    const data = await res.json();
-    visitorData.ip = data.ip;
-  }catch(e){
-    visitorData.ip = "unknown";
-  }
-}
-getIP();
-
-function getChannel(){
-  const ref = document.referrer;
-  if(!ref) return "direct";
-  if(ref.includes("naver")) return "naver";
-  if(ref.includes("google")) return "google";
-  if(ref.includes("instagram")) return "instagram";
-  if(ref.includes("youtube")) return "youtube";
-  return "etc";
-}
-visitorData.channel = getChannel();
-
-function getUTM(){
-  const params = new URLSearchParams(location.search);
-  return {
-    utm_source: params.get("utm_source"),
-    utm_medium: params.get("utm_medium"),
-    utm_campaign: params.get("utm_campaign")
-  };
-}
-Object.assign(visitorData, getUTM());
-
-setInterval(()=>{
-  sendConversion("stay_ping");
-},15000);
-
-let maxScroll = 0;
-
-window.addEventListener("scroll", ()=>{
-  const scrollPercent = Math.floor((window.scrollY / document.body.scrollHeight)*100);
-  if(scrollPercent > maxScroll){
-    maxScroll = scrollPercent;
-  }
-});
-
-window.addEventListener("beforeunload", ()=>{
-  sendConversion("leave_scroll_" + maxScroll);
-});
-</script>
-
-<style>
-.live-box{
-  position:fixed;
-  left:20px;
-  bottom:20px;
-  z-index:9999;
-  background:#fff;
-  border:1px solid #e2e8f0;
-  border-radius:14px;
-  padding:12px 16px;
-  font-size:13px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-  text-align:left;
-  line-height:1.5;
-  transition:.3s;
-}
-.live-box b{
-  color:#7c3aed;
-}
-</style>
-
-<div class="live-box" id="liveBox">
-  확인 중입니다...
-</div>
-
-<script>
-const baseMessages = [
-  "지금도 확인 중입니다",
-  "최근 문의가 이어지고 있습니다",
-  "조금 전 상담이 진행되었습니다",
-  "현재 상담 요청이 들어오고 있습니다",
-  "여러 채널에서 확인 중입니다"
-];
-
-function getConsultStatus(){
-  const hour = new Date().getHours();
-  return (hour >= 9 && hour <= 20)
-    ? "지금 상담 가능합니다"
-    : "상담 예약 가능합니다";
-}
-
-function getRandomBase(){
-  return baseMessages[Math.floor(Math.random() * baseMessages.length)];
-}
-
-function renderBox(msg){
-  document.getElementById("liveBox").innerHTML = `
-    ${msg}<br>
-    <b>${getConsultStatus()}</b>
-  `;
-}
-
-renderBox(getRandomBase());
-
-setInterval(()=>{
-  renderBox(getRandomBase());
-},8000);
-
-if(localStorage.getItem("visit")){
-  setTimeout(()=>{
-    renderBox("다시 확인 중이시네요");
-  },3000);
-}
-localStorage.setItem("visit","1");
-
-setTimeout(()=>{
-  renderBox("확인하신 내용으로 상담 연결 가능합니다");
-},15000);
-
-const liveRef = document.referrer;
-
-if(liveRef.includes("naver")){
-  renderBox("검색 후 확인 중이시네요");
-}
-if(liveRef.includes("instagram")){
-  renderBox("콘텐츠 보고 방문하셨네요");
-}
-if(liveRef.includes("youtube")){
-  renderBox("영상 보고 확인 중이시네요");
-}
-
-let liveScrollTriggered = false;
-
-window.addEventListener("scroll", ()=>{
-  if(!liveScrollTriggered && window.scrollY > 400){
-    liveScrollTriggered = true;
-    renderBox("필요한 내용 거의 확인하셨네요");
-  }
-});
-
-document.addEventListener("mouseleave", (e)=>{
-  if(e.clientY < 0){
-    renderBox("나가기 전에 상담 가능 여부 확인해보세요");
-  }
-});
 </script>
 
 <script>
@@ -1220,6 +1288,10 @@ document.addEventListener("mouseleave", (e)=>{
       targetWind *= .985;
     }
 
+    targetWind += (Math.random() - .5) * .006;
+    if(targetWind > 7) targetWind = 7;
+    if(targetWind < -7) targetWind = -7;
+
     wind += (targetWind - wind) * .025;
     stormPower += (targetStormPower - stormPower) * .018;
 
@@ -1253,6 +1325,10 @@ document.addEventListener("mouseleave", (e)=>{
 
       d.x += angle * .22;
       d.y += d.speed * d.layer;
+
+      if(stormPower > .72){
+        d.y += .12;
+      }
 
       if(d.y > height){
         if(Math.random() < .32 + stormPower * .26){
@@ -1292,7 +1368,7 @@ document.addEventListener("mouseleave", (e)=>{
 
       ctx.save();
       ctx.shadowColor = "rgba(255,255,255," + alpha + ")";
-      ctx.shadowBlur = bolt.branch ? 8 : 20;
+      ctx.shadowBlur = bolt.branch ? 10 : 34;
       ctx.strokeStyle = "rgba(255,255,255," + alpha + ")";
       ctx.lineWidth = bolt.width;
       ctx.lineJoin = "round";
